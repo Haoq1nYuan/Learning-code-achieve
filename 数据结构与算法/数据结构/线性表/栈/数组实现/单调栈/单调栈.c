@@ -48,7 +48,7 @@ int main ( int argc, char *argv[] )
         while ( t && num <= stk[t] ) t--;
 
         if ( t ) printf( "%d ", stk[t] );
-        else printf( "-1 " );
+        else printf( "-1 ");
 
         //最后放入新值
         stk[++t] = num;
