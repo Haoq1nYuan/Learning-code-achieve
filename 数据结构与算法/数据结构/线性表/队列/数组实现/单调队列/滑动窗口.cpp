@@ -1,7 +1,7 @@
 //https://www.acwing.com/problem/content/156/
 
 //双指针暴力
-#include <iostream>
+/* #include <iostream>
 #include <cstring>
 #include <cstdio>
 
@@ -36,40 +36,57 @@ int main ()
     cout << endl;
 
     return 0;
-}
+} */
 
 //单调队列优化
+//最大最小分开遍历
 #include <iostream>
+#include <cstring>
 using namespace std;
 
-int q[N], h, t;
-int maxn[N], minn[N];
-int n, k, x;
+const int N = 1000010;
+
+int q[N], h = 0, t = -1;   //队列中存储元素下标而非元素值
+int n, k, a[N];
 
 int main ()
 {
     cin >> n >> k;
+    for ( int i = 0; i < n; i++ ) cin >> a[i];
     
-    memset(minn, 0x3f, sizeof(minn));
-    memset(maxn, -0x3f, sizeof(maxn));
-
+    //i表示窗口的最右端
     for ( int i = 0; i < n; i++ )
     {
-        if ( i < 3 ) 
-        {
-            cin >> q[++t];
-            maxn[2] = max( maxn[2], q[t] );
-            minn[2] = min( minn[2], q[t] );
-            continue;
-        }
+        //判断对头是否脱离窗口
+        if ( h <= t && i - k + 1 > q[h] ) h++;  
 
-        cin >> x;
-        h--, q[++t] = x;
+        //队尾下标对应元素 < 新元素时新下标下标入列
+        //这样可以保证队列是一个小根堆，呈单调递增状态，窗口中的最小值下标就是队头的元素
+        while ( h <= t && a[q[t]] >= a[i] ) t--;
 
-        if ( x > maxn[i-1] && ) maxn[i] = x;
-        else if ( x < )
+        //新下标入列
+        q[++t] = i;
+
+        //由于i是从0开始遍历，所以i要 > 窗口长度才能输出结果
+        if ( i >= k - 1 ) cout << a[q[h]] << ' ';
     }
+    cout << endl;
 
+    //memset(q, 0, sizeof(q));  可以省略初始化操作，后面都会覆盖
+    h = 0, t = -1;
 
+    //同理
+    for ( int i = 0; i < n; i++ )
+    {
+        if ( h <= t && i - k + 1 > q[h] ) h++;
+
+        while ( h <= t && a[q[t]] <= a[i] ) t--;
+
+        q[++t] = i;
+
+        if ( i >= k - 1 ) cout << a[q[h]] << ' ';        
+    }
+    cout << endl;
+    
     return 0;
 }

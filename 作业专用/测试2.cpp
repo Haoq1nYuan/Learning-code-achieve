@@ -18,9 +18,22 @@ using namespace std;
 const int N = 10010;
 typedef long long ll;
 
+int n, m;
+string a, b;
+
 int main ()
 {
+    cin >> n >> a >> m >> b;
 
+    cout << b.find(a) << endl;
+
+    b = b.substr(b.find(a)+a.size());
+
+    cout << b.find(a) << endl;
+
+    b = b.substr(b.find(a)+a.size());
+
+    cout << b.find(a) << endl;
 
     return 0;
 }
