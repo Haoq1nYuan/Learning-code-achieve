@@ -39,23 +39,3 @@ int main ( int argc, char *argv[] )
 
     return 0;
 }
-
-//”≈ªØ
-#include<stdio.h>
-#define max(a,b) ((a)>(b)?(a):(b))
-#define N 100010
-
-int n, a[N], ans;
-int dp[N];
-
-int main ( int argc, char *argv[] )
-{
-    scanf( "%d", &n );
-    for ( int i = 1; i <= n; i++ )
-        scanf( "%d", &a[i] );
-
-    
-
-
-    return 0;
-}

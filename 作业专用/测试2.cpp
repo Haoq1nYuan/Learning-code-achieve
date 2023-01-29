@@ -23,17 +23,9 @@ string a, b;
 
 int main ()
 {
-    cin >> n >> a >> m >> b;
+    cin >> a;
 
-    cout << b.find(a) << endl;
-
-    b = b.substr(b.find(a)+a.size());
-
-    cout << b.find(a) << endl;
-
-    b = b.substr(b.find(a)+a.size());
-
-    cout << b.find(a) << endl;
+    cout << a.substr(a.size()-1);
 
     return 0;
 }
