@@ -23,9 +23,9 @@ string a, b;
 
 int main ()
 {
-    cin >> a;
+    cin >> a >> b;
 
-    cout << a.substr(a.size()-1);
+    cout << ( a == "aaa" );
 
     return 0;
 }
