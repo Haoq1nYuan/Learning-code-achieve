@@ -19,13 +19,13 @@ const int N = 10010;
 typedef long long ll;
 
 int n, m;
-string a, b;
+char a[2];
 
 int main ()
 {
-    cin >> a >> b;
+    int b = 1;
 
-    cout << ( a == "aaa" );
+    cout << (b >> 1);
 
     return 0;
 }
