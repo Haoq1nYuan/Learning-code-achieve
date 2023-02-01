@@ -1,31 +1,15 @@
-#include <algorithm>
 #include <iostream>
-#include <limits.h>
-#include <cstring>
-#include <sstream>
-#include <string>
-#include <cstdio>
-#include <cctype>
-#include <vector>
-#include <bitset>
-#include <ctime>
-#include <queue>
-#include <stack>
-#include <cmath>
-#include <set>
 using namespace std;
+const int N = 100010;
 
-const int N = 10010;
-typedef long long ll;
-
-int n, m;
-char a[2];
+string a;
+int n[N], m[N], ans[N], k;
 
 int main ()
 {
-    int b = 1;
+    unsigned int a = 1;
 
-    cout << (b >> 1);
-
+    cout << a - 2;
+    
     return 0;
 }
