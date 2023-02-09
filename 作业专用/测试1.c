@@ -10,7 +10,9 @@ char k;
 
 int main ( int argc, char *argv[] )
 {
-    printf( "%d\n", b[2] == 0 );
+    char kk[] = "111";
+
+    printf( "%2.3s", kk );
 
     return 0;
 }
