@@ -9,7 +9,7 @@ vector<int> a, b;
 
 int main ()
 {
-    scanf( "");
+    puts("");
 
     return 0;
 }
