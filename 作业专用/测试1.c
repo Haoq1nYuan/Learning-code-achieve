@@ -1,62 +1,101 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<math.h>
-#define N 20
+/* #include <stdio.h>
+#include <stdlib.h>
 
-int ans[N][N], tem[N][N];
-int num;
+int n;
 
-void reverse ( int (*p)[20] )
-{   
-    for ( int i = 1; i <= num; i++ )
-        for ( int j = 1; j <= num; j++ )
-            tem[j][num-i+1] = p[i][j];
-}
-
-int main ( int argc, char *argv[] )
+typedef struct node
 {
-    int l = 1, flag = 0;
+    int num;
+    struct node* next;
+} N;
 
-    scanf( "%d", &num );
+int main ()
+{
+    N *head;
+    head = NULL;
 
-    int x = 1, y = 1;
-    for ( int i = 1; i <= num*num; i++ )
+    for ( int i = 1; i <= 5; i ++ )
     {
-        ans[x][y] = i;
+        scanf( "%d", &n );
 
-        if ( flag == 1 )
+        N *newcode;
+        newcode = (N*)malloc(sizeof(N));
+        newcode->num = n;
+        newcode->next = NULL;
+
+        N *p = head;
+
+        if ( p != NULL )
         {
-            if ( l == 1 ) x--, y++;
-            if ( l == -1 ) x++, y--;
-            flag--;
-            continue;
+            while (p->next != NULL) p = p->next;
+            p->next = newcode;
+            p = p->next;
+        }
+        else head = newcode;
+    }
+
+    N * q = head;
+    for ( int i = 1; i <= 5; i++ ) 
+    {
+        printf( "%d ", q->num );
+        q = q->next;
+    }
+    puts("");
+
+    int kk;
+    scanf( "%d", &kk );
+
+    N *n, *m = NULL;
+    for ( n = head; n; m = n, n = n->next )
+        if ( n->num == kk ) 
+        {
+            m->next = n->next;
+            free(n);
+            break;
+        }
+    
+    N * t = head;
+    for ( int i = 1; i <= 4; i++ ) 
+    {
+        printf( "%d ", t->num );
+        t = t->next;
+    }
+    puts("");
+
+    int pp;
+    scanf( "%d %d", &kk, &pp );
+
+    N *a;                       
+    for ( a = head; a; a = a->next )
+        if ( a->num == pp )
+        {
+            N *newcode = (N*)malloc(sizeof(N));
+            newcode->num = kk;
+            newcode->next = a->next;
+            a->next = newcode;
+            break;
         }
         
-        if ( x == 1 || x == num || y == 1 || y == num ) l *= (-1), flag++;
-
-        if ( x == 1 ) 
-        {
-            if ( y < num ) y++;
-            else x++;
-        } else if ( x == num ) y++; 
-        else if ( y == 1 )
-        {
-            if ( x < num ) x++;
-            else y++;
-        } else if ( y == num ) x++; 
-        else if ( l == 1 ) x--, y++;
-        else x++, y--;
-    }
-
-    reverse(ans);
-
-    for ( int i = 1; i <= num; i++ )
+    N * o = head;
+    for ( int i = 1; i <= 5; i++ ) 
     {
-        for ( int j = 1; j <= num; j++ )
-            printf( "%-2d ", tem[i][j] );
-        puts("");
+        printf( "%d ", o->num );
+        o = o->next;
     }
+
+    return 0;
+} */
+
+#include<stdio.h>
+#include <stdlib.h>
+
+int main ()
+{
+    char *s = (char*)malloc(5);
+
+    gets(s);
+
+    puts(s);
 
     return 0;
 }
