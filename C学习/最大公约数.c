@@ -23,6 +23,13 @@ int main(){
         printf("t=%d\n",t);
     }*/
 
+/*     int ans ( int x, int y )
+    {
+        int t = x % y;
+        if ( !t ) return y;
+        return ans(y, t);
+    } */
+
     for(int i=2;i<((a<b)?a:b);i++){
         if(a%i==0&&b%i==0){
             printf("最大公约数是%d\n",i);

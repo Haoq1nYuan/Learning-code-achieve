@@ -88,14 +88,21 @@ int main ()
 
 #include<stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+int ans ( int x, int y )
+{
+    int t = x % y;
+    if ( !t ) return y;
+    return ans(y, t);
+}
 
 int main ()
 {
-    char *s = (char*)malloc(5);
+    int x, y;
+    scanf( "%d %d", &x, &y );
 
-    gets(s);
-
-    puts(s);
+    printf( "%d", ans(x, y) );
 
     return 0;
 }
