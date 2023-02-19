@@ -26,6 +26,7 @@ void merge_sort ( int *q, int l, int r )
     while ( i <= mid ) ans[++k] = q[i++];
     while ( j <= r ) ans[++k] = q[j++];
     
+    //将原数组更新为排好序的序列
     for ( int i = l, j = 1; j <= k; j++, i++ ) q[i] = ans[j]; 
 }
 

@@ -167,10 +167,8 @@ int main ( int argc, char *argv[] )
     for ( i = 1; i <= N; i++ ) {
         for ( j = i; j <= N; j++ ) {
             for ( l = 1, r = 1; r <= M; r++ ) {
-                while ( l <= r && a[j][r] - a[j][l-1] - a[i-1][r] + a[i-1][l-1] > K ) 
-                    l++;
-                if ( l <= r ) 
-                    result += r - l + 1;
+                while ( l <= r && a[j][r] - a[j][l-1] - a[i-1][r] + a[i-1][l-1] > K ) l++;
+                if ( l <= r ) result += r - l + 1;
             }
         }
     }
