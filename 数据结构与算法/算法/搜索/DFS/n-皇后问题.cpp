@@ -1,5 +1,6 @@
 //https://www.acwing.com/problem/content/845/
 
+//朴素对角线
 #include <iostream>
 #include <cstring>
 
@@ -48,3 +49,6 @@ int main ()
     
     return 0;
 }
+
+//当然也可以用两个数组来表示正对角线和反对角线，观察到在同一负对角线上 k + i 始终不变
+//在同一正对角线上 n - i + k 始终不变
