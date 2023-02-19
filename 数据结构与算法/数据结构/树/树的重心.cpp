@@ -7,9 +7,9 @@ using namespace std;
 const int N =100010, M = N * 2;
 
 int n;
-int h[N], e[M], ne[M], idx = 1;
+int h[N], e[M], ne[M], idx;
 int ans = N;
-bool st[N];
+bool st[M];
 
 //头插，将b插入a中，a作为根，处在链表开头
 //遍历的时候从根节点开始递归，递归到最末子节点后层层返回
@@ -27,6 +27,7 @@ int dfs (int u)
     st[u] = true;
     
     int size = 0, sum = 0;
+    //遍历u的所有子树中节点个数
     for ( int i = h[u]; i != -1; i = ne[i] )
     {
         if (st[e[i]]) continue;
