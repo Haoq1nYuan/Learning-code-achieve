@@ -1,5 +1,8 @@
 #include <iostream>
+#include <algorithm>
+#include <limits.h>
 #include <vector>
+
 using namespace std;
 const int N = 100010;
 
@@ -8,11 +11,7 @@ int n[N], m[N], ans[N], k;
 
 int main ()
 {
-    vector<pair<char, pair<int, int>>> a;
-
-    a.push_back({'k', {1, 4}});
-
-    cout << a.second;
+    auto q = INT_MAX;
     
     return 0;
 }

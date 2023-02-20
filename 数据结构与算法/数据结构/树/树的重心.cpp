@@ -4,7 +4,7 @@
 #include <cstring>
 
 using namespace std;
-const int N =100010, M = N * 2;
+const int N = 100010, M = N * 2;
 
 int n;
 int h[N], e[M], ne[M], idx;
