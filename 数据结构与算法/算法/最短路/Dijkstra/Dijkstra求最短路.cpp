@@ -63,7 +63,6 @@ int main ()
 //堆优化版
 //https://www.acwing.com/problem/content/851/
 
-//这里的最短路问题和bfs的最短路有个相同之处，就是先遍历的点最短距离肯定更小
 #include <iostream>
 #include <cstring>
 #include <queue>
@@ -91,9 +90,10 @@ int dijkstra()
     dist[1] = 0;
     
     priority_queue<PII, vector<PII>, greater<PII>> heap;
+    //这里需要先存距离，方便排序
     heap.push({0, 1});
     
-    //遍历n次，每次可以确定一个点到1的最短路
+    //小根堆自动得到当前距离1最近的点
     while (heap.size())
     {
         auto t = heap.top();
