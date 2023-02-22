@@ -31,9 +31,10 @@ int dijkstra()
         if (t == n)  break;
 
         st[t] = true;
+
         //通过找到的点的最短距离去更新与它相邻的其他点的距离
-        for ( int i = 1; i <= n; i++ )
-            dist[i] = min(dist[i], dist[t] + g[t][i]);
+        for ( int j = 1; j <= n; j++ )
+            dist[j] = min(dist[j], dist[t] + g[t][j]);
     }
     
     //如果最后一个点没有被改变，说明不存在最短路
@@ -109,6 +110,7 @@ int dijkstra()
             int j = e[i];
             //将所有被更新距离的点存到小根堆中，自动排序，
             //下一次取出就是当前距离1最近且未被遍历过的点
+            //此处 w[i] 存储当前邻点到链表头节点的距离
             if (dist[j] > distance + w[i])
             {
                 dist[j] = distance + w[i];
