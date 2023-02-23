@@ -11,7 +11,7 @@ int n[N], m[N], ans[N], k;
 
 int main ()
 {
-    auto q = INT_MAX;
+    cout << 2 % 4;
     
     return 0;
 }
