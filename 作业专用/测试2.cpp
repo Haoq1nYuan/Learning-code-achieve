@@ -11,7 +11,7 @@ int n[N], m[N], ans[N], k;
 
 int main ()
 {
-    cout << (1^1);
+    cout << (1 + 2 >> 2);
     
     return 0;
 }

@@ -1,4 +1,4 @@
-//https://www.acwing.com/problem/content/1462/
+//https://www.acwing.com/problem/content/description/1462/
 
 //ÎÒÐ´µÄ
 #include <iostream>

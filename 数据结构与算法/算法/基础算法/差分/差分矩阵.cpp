@@ -46,12 +46,12 @@ int main ()
         for ( int j = 1; j <= m; j++ )
             //此时b数组就是一个前缀和数组，我们需要求b矩阵以b[1][1]为左上角，
             //以b[i][j]为右下角的子矩阵的和，这个和就是a[i][j]
-            b[i][j] += b[i - 1][j] + b[i][j - 1] + a[i - 1][j - 1];
+            b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
 
     for ( int i = 1; i <= n; i++ )
     {
         for ( int j = 1; j <= m; j++ )
-            cout << a[i][j] << ' ';
+            cout << b[i][j] << ' ';
         puts("");
     }
 
