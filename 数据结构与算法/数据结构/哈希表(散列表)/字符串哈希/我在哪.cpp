@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/description/1462/
 
-//我写的
+//ÎŇĐ´ľÄ
 #include <iostream>
 #include <unordered_map>
 
@@ -54,7 +54,7 @@ int main ()
     return 0;
 }
 
-//y总
+//y×Ü
 #include <iostream>
 #include <unordered_set>
 

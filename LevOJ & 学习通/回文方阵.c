@@ -36,11 +36,10 @@ int main ( int argc, char * argv[] )
 		}
 		for ( i = 0; i < n; i++ ) {
 			for ( j = 0; j < n; j++ ) {
-				printf( "%d\t",a[i][j] );
+				printf( "%d ",a[i][j] );
 			}
 			printf( "\n" );
 		}
-		printf( "\n" );
 	}
 
 	return 0;

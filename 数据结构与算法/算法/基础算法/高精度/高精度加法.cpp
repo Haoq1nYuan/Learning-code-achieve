@@ -1,7 +1,7 @@
 //https://www.acwing.com/problem/content/description/793/
 
 //×Ô¼ºÐ´µÄ
-#include <iostream>
+/* #include <iostream>
 using namespace std;
 const int N = 100010;
 
@@ -39,7 +39,7 @@ int main ()
     
     return 0;
 }
-
+ */
 //vectorÈÝÆ÷
 #include <iostream>
 #include <vector>
@@ -48,7 +48,7 @@ using namespace std;
 string A, B;
 vector<int> a, b;
 
-vector<int> add ( vector<int> &n, vector<int> &m )
+vector<int> add ( vector<int> n, vector<int> m )
 {
     vector<int> k;
     

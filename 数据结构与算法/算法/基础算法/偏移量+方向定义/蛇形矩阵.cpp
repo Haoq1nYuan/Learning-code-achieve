@@ -86,7 +86,7 @@ int main ()
 {
     cin >> n >> m;
 
-    int x = 1, y = 1;
+    int x = 1, y = m;
 
     for ( int i = 1; i <= n * m; i++ )
     {

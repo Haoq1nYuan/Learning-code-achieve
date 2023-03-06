@@ -1,10 +1,23 @@
 #include <stdio.h>
+#include <string.h>
+
+char k[15], e[5];
+char a[140010];
 
 int main ()
 {
-    float a = 8.356888;
+    while (scanf("%s", k), strcmp(k, "ENDOFINPUT"))
+    {
+        getchar();
+        gets(a);
+        gets(e);
 
-    printf( "%lf", (float)((int)(a*1000+5)/10)/100 );
+        for (int i = 0; a[i] != '\0'; i++)
+            if (a[i] <= 'Z' && a[i] >= 'A')
+                a[i] = (char)((a[i] - 'A' + 21) % 26) + 'A';
+
+        puts(a);
+    }
 
     return 0;
 }

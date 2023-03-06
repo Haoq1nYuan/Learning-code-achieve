@@ -32,7 +32,7 @@ vector<int> Minor ( vector<int> &a, vector<int> &b )
         if ( i < a.size() ) t += a[i];
         if ( i < b.size() ) t -= b[i];
         if ( t >= 0 ) c.push_back(t), t = 0;
-        else c.push_back((10+t)%10), t = -1;
+        else c.push_back(10+t), t = -1;
     }
     
     //Ä¨È¥Ç°µ¼0

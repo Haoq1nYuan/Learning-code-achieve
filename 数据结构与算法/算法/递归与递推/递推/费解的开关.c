@@ -22,7 +22,7 @@ void turn ( int x, int y )
     for ( int i = 1; i <= 5; i++ )
     {
         int a = x + dx[i], b = y + dy[i];
-        if ( a < 1 || a > 5 || b < 1 || b > 5 ) continue;
+        //if ( a < 1 || a > 5 || b < 1 || b > 5 ) continue;
         state[a][b] ^= 1;   //异或运算符可以高效地实现1和0的互换
     }
 }

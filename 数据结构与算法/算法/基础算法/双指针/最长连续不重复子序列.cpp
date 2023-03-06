@@ -1,3 +1,6 @@
+//https://www.acwing.com/problem/content/description/801/
+
+//类似于滑动窗口
 #include <iostream>
 
 using namespace std;
