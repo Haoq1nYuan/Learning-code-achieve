@@ -26,7 +26,7 @@ int bfs (string state)
         auto t = q.front();
         q.pop();
         
-        if (t== end) return d[t];
+        if (t == end) return d[t];
         
         //此处存储原状态下的距离，方便下面多种情况的数据使用
         int distance = d[t];
