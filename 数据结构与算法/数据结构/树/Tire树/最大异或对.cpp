@@ -55,6 +55,7 @@ int main ()
 
     for ( int i = 0; i < n; i++ )
     {
+        //找到从高位到低位01串尽可能和x[i]不同的那个数
         int k = Search(x[i]);
         ans = max( ans, k ^ x[i] );
     }
