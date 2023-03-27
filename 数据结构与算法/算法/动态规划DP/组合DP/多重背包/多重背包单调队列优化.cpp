@@ -22,7 +22,7 @@ dp[n+v] = max( dp[n] + w, dp[n+v] );                     //dp[n] 和 dp[n+v] 相差
 dp[n+2*v] = max( dp[n] + 2*w, dp[n+v] + w, dp[n+2*v] );  //dp[n] 和 dp[n+2*v] 相差 2 个 w
 ………………
 并且我们知道，对于每个物品，数量是有限的(假设数量最多为s)，也就是说 k = s，当n不断加上单个物品体积后，最大不能超过 n + s*v
-这就看到了滑动窗口的影子，维护一个长度为s的单调递减队列，队列q存储 n + m*v. ( 0 <= m < s )
+这就让我们看到了滑动窗口的影子，维护一个长度为s的单调递减队列，队列q存储总体积，即 n + m*v. ( 0 <= m < s )
 q[h]可能是小于 n + m*v 的任意一个值，dp[q[h]]和dp[k]相差 k - q[h] 个 w.
 
 3.得到f(a)，便于入队判定
@@ -60,9 +60,9 @@ int main ()
             {
                 if ( h <= t && k - s*v > q[h] ) h++;
 
-                while ( h <= t && tem[q[t]] - (q[t] - j)/v * w <= tem[k] - (k - j)/v * w ) t--;  
+                while ( h <= t && tem[q[t]] + (q[t])/v * w <= tem[k] - (k - j)/v * w ) t--;
 
-                if ( h <= t ) dp[k] = max( tem[k], tem[q[h]] + (k - q[h])/v * w ); 
+                if ( h <= t ) dp[k] = max( tem[k], tem[q[h]] + (k - q[h])/v * w );
 
                 q[++t] = k;
             }

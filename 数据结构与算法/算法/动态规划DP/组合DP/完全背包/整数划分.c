@@ -25,7 +25,7 @@ int main ( int argc, char *argv[] )
             //不选
             dp[i][j] = ( dp[i][j] + dp[i-1][j] ) % mod;
             //选至少1个
-            for ( int k = 1; k*i <= j; k++ )
+            for ( int k = 1; k * i <= j; k++ )
                 dp[i][j] = ( dp[i][j] + dp[i-1][j-k*i] ) % mod;
         }
 
