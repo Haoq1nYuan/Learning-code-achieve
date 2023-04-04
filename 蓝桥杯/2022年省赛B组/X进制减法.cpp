@@ -22,7 +22,7 @@ int main ()
     cin >> lb;
     for (int i = lb; i; i--) cin >> b[i];
     
-    //计算相同数位的最大合法进制
+    //计算相同数位的最大小合法进制
     int len = max(la, lb);
     for (int i = 1; i <= len; i++)
     {
