@@ -2,10 +2,13 @@
 
 using namespace std;
 
+typedef long long ll;
+
 const int N = 1e8;
 
 int a[2][N];
-int n, cnt;
+int n;
+ll cnt;
 bool flag;
 
 int main ()
