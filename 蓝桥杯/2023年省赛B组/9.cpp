@@ -23,7 +23,7 @@ int dijkstra (int b, int ee)
 {
     memset(st, 0, sizeof(st));
     memset(dist, 0x3f, sizeof(dist));
-    dist[0] = 1;
+    dist[b] = 0;
 
     priority_queue<PII, vector<PII>, greater<PII>> heap;
     heap.push({0, b});
@@ -71,7 +71,7 @@ int main ()
     for (int i = 1; i <= k; i++)
     {
         if (i == 1) cout << dijkstra(g[2], g[k]) << ' ';
-        else if (i == n) cout << dijkstra(g[1], g[k - 1]) << ' ';
+        else if (i == k) cout << dijkstra(g[1], g[k - 1]) << ' ';
         else cout << dijkstra(g[1], g[i - 1]) + dijkstra(g[i + 1], g[k]) << ' ';
     }
 

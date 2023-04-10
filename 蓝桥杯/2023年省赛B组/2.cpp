@@ -1,4 +1,4 @@
-/* #include <iostream>
+#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -18,7 +18,7 @@ int main ()
 
         ans = i * k1 + j * k0;
 
-        if (ans - 11625907.5798 < 1e-7) 
+        if (ans - 11625907.5798 < 1e-6) 
         {
             cout << j << endl;
             break;
@@ -27,8 +27,8 @@ int main ()
 
     return 0;
 }
- */
-#include <iostream>
+
+/* #include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -49,4 +49,4 @@ int main ()
 
     return 0;
 }
-
+ */
