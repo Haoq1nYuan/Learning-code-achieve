@@ -13,11 +13,13 @@ int main ()
 {
     cin >> n >> m >> a;
 
-    sum = (ll)(n / a) * (m / a);
+    int r = n / a;
+    int c = m / a; 
 
-    if (n % a != 0) sum += n / a + 1;
-    if (m % a != 0) sum += m / a + 1;
-    if (m % a != 0 && n % a != 0) sum--;
+    sum = (ll)r * c;
+    if (n % a) sum += m / a + (m % a ? 1 : 0);
+    if (m % a) sum += n / a + (n % a ? 1 : 0);
+    if (n % a && m % a) sum--;
 
     cout << sum << endl;
 
