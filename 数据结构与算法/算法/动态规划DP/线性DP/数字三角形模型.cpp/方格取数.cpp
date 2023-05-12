@@ -10,7 +10,7 @@ const int N = 25;
 
 int n, x, y, c, g[N][N];
 int f[N][N][N];
-//状态表示：f[k][i][j]表示经过k步，a走到(i, n - i)处，b走到(j, n - j)处
+//状态表示：f[k][i][j]表示经过k步，a走到(i, k - i)处，b走到(j, k - j)处
 //状态转移：如果下标不越界，那么直接从i - 1， i， j - 1, j四个方向上取最大值
 
 int get (int k, int i, int j)
