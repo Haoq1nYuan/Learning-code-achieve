@@ -1,42 +1,50 @@
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
+#include <bits/stdc++.h>
 typedef long long ll;
+#define debug(a) cout<<#a<<"="<<a<<endl;
+using namespace std;
+const int maxn=10086;
 
-const int Mod = 1337;
-
-int a;
-string b;
-vector<int> p;
-
-int qmi (int a, int b)
-{   
-    int res = 1;
-    while (b)
-    {
-        if (b & 1) res = (ll)res * a % Mod;
-        a = (ll)a * a % Mod;
-        b >>= 1;
-    }
-
-    return res;
+string make_it_string(int k) {
+	int reverse[maxn]={0},len=0;
+	string to;
+	while (k) reverse[len]=k%10,k/=10,len++;
+	for(int i=len-1;i>=0;i--) to+=(reverse[i]+'0');
+	return to;
 }
+int find_frac(int &n,int &m){
+	int k=m/n+1;
+	int factor=__gcd(n*k-m,m*k);
+	n=(n*k-m)/factor,m=m*k/factor;
+	return k;
+}
+int main(){
+	int n,m;
+	while (cin>>n>>m) {
+		int f=0,fl=1;
+		string ans;
 
-int main ()
-{
-    cin >> a >> b;
-    for (auto k : b) p.push_back(k - '0');
+		// do not forget this simplification ,in case n==m
+		int _=__gcd(n,m);
+		n/=_,m/=_;
+	
+		while (n!=1) {
+			int k=find_frac(n,m);
+			if(k<1) {std::cout << "No found!" << '\n';fl=0;break;}
+	
+			ans+=(f?"+":"");
+			ans+="1";
+			ans+="/"+make_it_string(k);
+	
+			if(!f) f=1;
+		}
+		if(n==1) {
+			ans+=(f?"+":"");
+			ans+="1";
+			ans+="/"+make_it_string(m/n);
+		}
+	
+		if(fl) std::cout << ans << '\n';
+	}
+	return 0;
 
-    int ans = 1, len = p.size();
-    for (int i = len - 1; i >= 0; i--)
-    {
-        ans = (ll)ans * qmi(a, p[i]) % Mod;
-        a = qmi(a, 10);
-    }
-
-    cout << ans << endl;
-
-    return 0;
 }

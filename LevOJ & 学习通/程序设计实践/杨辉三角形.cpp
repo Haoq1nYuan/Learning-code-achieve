@@ -16,7 +16,7 @@ ll C(ll q,ll x)
     return ans;
 }
  
-ll check(ll x)           //¶þ·Ö
+ll check(ll x)           
 {
     ll l=2*x,r=n,q;
     while(l<=r)
