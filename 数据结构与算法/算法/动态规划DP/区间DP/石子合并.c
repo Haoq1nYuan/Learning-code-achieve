@@ -32,7 +32,7 @@ int main ( int argc, char *argv[] )
             int j = i + len - 1;
             dp[i][j] = 0x3f3f3f3f;   //此处把待赋值的变量初始化为无穷大，以便之后的min比较
             for ( int k = i; k < j; k++ )
-                dp[i][j] = min( dp[i][j], dp[i][k] + dp[k+1][j] + s[j] - s[i-1] );
+                dp[i][j] = min( dp[i][j], dp[i][k] + dp[k + 1][j] + s[j] - s[i-1] );
         }
 
     printf( "%d\n", dp[1][n] );

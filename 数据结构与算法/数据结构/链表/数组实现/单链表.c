@@ -68,7 +68,7 @@ int main ( int argc, char *argv[] )
             //此处特判，如果k为0，表示删除头节点，
             //只需要使头节点指向头节点的next指针指向的节点（删除了原本的第一个节点）
             if ( !k ) head = ne[head];  
-            remove_behind_p( k-1 );
+            else remove_behind_p( k-1 ); //这里链表数组下标从 0 开始
         }
         else if ( how[0] == 'I' ) 
         {

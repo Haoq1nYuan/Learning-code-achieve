@@ -39,6 +39,8 @@ void spfa (int *h, int *dist, int type)
         int t = q[hh++];
         st[t] = false;
         
+        //遍历所有与 t 节点间只有一条有向边连通的所有点 k1, k2, k3,…
+        //且 t 节点为前驱结点，边为 t -> k
         for (int i = h[t]; i != -1; i = ne[i])
         {
             int j = e[i];

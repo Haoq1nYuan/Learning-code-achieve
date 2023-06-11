@@ -33,15 +33,17 @@ int main ()
     int lb = -2e9, rb = -2e9;
     for (auto k : item)
     {
+        //若下一个序列与当前母序列无交集，则多加一条序列，更新左右端点
         if (rb < k.first) 
         {
             if (lb != -2e9) res.push_back({lb, rb});
             lb = k.first, rb = k.second;
         }
-        else rb = max(rb, k.second);
+        else rb = max(rb, k.second); //否则只需延长母序列的右端点
     }
     
-    //此处if判断的作用是压入最后一个区间，但是防止n为0，把[-2e9, -2e9]压入res容器中
+    //此处if判断的作用是压入最后一个区间，
+    //但是会做一个判断，防止把[-2e9, x(x为最末序列的右端点)]压入到res容器中
     if (lb != -2e9) res.push_back({lb, rb});
     
     cout << res.size() << endl;

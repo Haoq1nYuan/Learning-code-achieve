@@ -24,7 +24,10 @@ int main ()
         for (int i = 1; i + num - 1 <= n * 2; i++)
         {
             int j = i + num - 1;
-            for (int k = i + 1; k < j; k++) dp[i][j] = max(dp[i][j], dp[i][k] + m[k] * m[i] * m[j] + dp[k][j]);
+            dp[i][j] = 0;  //计算max的初始化
+            
+            for (int k = i + 1; k < j; k++) 
+                dp[i][j] = max(dp[i][j], dp[i][k] + m[k] * m[i] * m[j] + dp[k][j]);
         }   
     
     //将所有窗口中所有全域情况娶个最大值

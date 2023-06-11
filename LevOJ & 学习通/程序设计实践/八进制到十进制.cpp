@@ -3,19 +3,18 @@
 
 using namespace std;
 
-int n;
+int n, jz;
 
 int main ()
 {
-    while (cin >> n, n)
+    while (cin >> n >> jz, n)
     {
         int ans = 0, p = 0;
         while (n)
         {
-            int k = n % 10;
+	        ans += n % 10 * pow(jz, p);
             n /= 10;
             p++;
-            ans += k * pow(8, p - 1);
         }
 
         cout << ans << endl;
