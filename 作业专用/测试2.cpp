@@ -6,12 +6,9 @@ int n;
 
 int main ()
 {
-    cin >> n;
+    bool it = (1.1 == 1.1);
 
-    int x = n;
-    for (int i = 1; i <= 4; i++) n = n * 10 + x % 10, x /= 10;
-
-    cout << n << endl;
+    cout << it << endl;
 
     return 0;
 }
