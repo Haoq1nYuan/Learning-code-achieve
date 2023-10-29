@@ -1,11 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+# include <stdio.h>
+# include <math.h>
 
 int main ()
-{   
-    srand((unsigned int)time(0));
-    
+{
+    int a, b, c;
+    double p, S, T;
 
+    while (scanf("%d %d %d", &a, &b, &c) != EOF)
+        if (a + c > b && a + b > c && b + c > a)
+        {
+            p = (a + b + c) / 2;
+            T = p * (p - a) * (p - b) * (p - c);
+            S = sqrt(T);
+            printf("%.2f\n", S); 
+        }
+        else printf("-1\n");
+    
     return 0;
 }
