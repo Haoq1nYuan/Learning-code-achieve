@@ -17,12 +17,16 @@ typedef struct
 // 构建十字链表
 void CreateSMatrix_OL (CrossList &m)
 {
+    // 录入十字链表尺寸及非零元个数
     int r, c, n;
     cin >> r >> c >> n;
     m.r = r, m.c = c, m.n = n;
 
+    // 已定义过的变量申请内存空间无需指明类型
     m.rhead = new OLink[n + 1];
     m.chead = new OLink[n + 1];
+    
+    // 所有指针指向NULL
     for (int i = 1; i <= n; i++)
     {
         m.rhead[i] = NULL;
@@ -33,25 +37,36 @@ void CreateSMatrix_OL (CrossList &m)
     for (int s = 1; s <= n; s++)
     {
         cin >> i >> j >> e;
+
         OLNode *p = new OLNode;
         p -> i = i;
         p -> j = j;
         p -> e = e;
 
+        // 首先构建行向量
+        // 如果新元所在行没有元素或者该非零元在该行中的旧首元左边
+        // 则直接更新该行首元的位置
+        // 十字链表中，每一行每一列的末尾元指针都指向NULL，就是从这个判断中延续下去的
+        // NULL指针不断被传递到末尾位置。
         if (m.rhead[i] == NULL || m.rhead[i] -> j > j)
         {
+            // 新元指向旧首元
             p -> right = m.rhead[i];
+            // 更新指向首元的指针
             m.rhead[i] = p;
         }
-        else
+        else // 若该非零元在该行中的首元右边
         {
+            // 一直向右遍历，直到遍历到新元所在列的左侧最近一列上的非零元
             for (OLNode *q = m.rhead[i]; q && q -> j < j; q = q -> right)
             {
+                // 插入新元
                 p -> right = q -> right;
-                q -> right = p;
+                q ->right = p;
             }
         }
-        
+
+        // 构建列向量的过程同理
         if (m.chead[j] == NULL || m.chead[j] -> i > i)
         {
             p -> down = m.chead[j];
