@@ -41,17 +41,13 @@ void traditional_trans (TSMatrix m, TSMatrix &t)
 // 快速转置
 void super_trans (TSMatrix m, TSMatrix &t)
 {
-    t.c = m.r, t.r = m.c, t.n = m.n;    
+    t.r = m.c, t.c = m.r, t.n = m.n;
 
-    // 求出 M 每一列的非零元个数
     for (int p = 1; p <= m.n; p++) num[m.data[p].j]++;
 
-    // 构建 cpot 数组
     cpot[1] = 1;
-    for (int col = 2; col <= m.c; col++)
-        cpot[col] = cpot[col - 1] + num[col - 1];
+    for (int col = 2; col <= m.c; col++) cpot[col] = cpot[col - 1] + num[col - 1];
 
-    // 对于每一个非零元，依次求出它们的所在列和在t.data中的索引
     for (int p = 1; p <= m.n; p++)
     {
         int col = m.data[p].j;
@@ -59,9 +55,7 @@ void super_trans (TSMatrix m, TSMatrix &t)
         t.data[q].i = m.data[p].j;
         t.data[q].j = m.data[p].i;
         t.data[q].e = m.data[p].e;
-        // m 的每一列都可能会有多个非零元素存在，而cpot存储的只是非零首元的索引，
-        // 所以我们要在存储完第一个元素后更新下一个元素存放的索引
-        ++cpot[col];
+        cpot[col] ++;
     }
 }
 

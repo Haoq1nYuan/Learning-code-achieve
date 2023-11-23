@@ -21,9 +21,16 @@ Cargo::Cargo (int w)
 {
     weight = w;
     totalWeight += weight;
+    cout << Weight() << " pounds have been purchased, ";
+    cout << "now we have " << totalWeight << " pounds." << endl;
 }
 
-Cargo::~Cargo () {}
+Cargo::~Cargo () 
+{
+    totalWeight -= weight;
+    cout << weight << " pounds have been sended, ";
+    cout << totalWeight << " pounds left." << endl;
+}
 
 // 单箱货物重量
 int Cargo::Weight ()
@@ -40,10 +47,6 @@ int Cargo::TotalWeight ()
 int main ()
 {
     Cargo c1(30), c2(45);
-
-    cout << "The weight of c1 is: " << c1.Weight() << endl;
-    cout << "The weight of c2 is: " << c2.Weight() << endl;
-    cout << "The totalweight is: " << Cargo::TotalWeight() << endl;
 
     return 0;
 }

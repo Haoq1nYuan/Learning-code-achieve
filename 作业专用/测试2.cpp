@@ -2,87 +2,46 @@
 
 using namespace std;
 
-typedef struct OLNode
+class Base
+{   
+    public:
+        void set (int n) { x = n; }
+        int x;
+};
+
+class Derived: public Base
 {
-    int i, j, e;
-    struct OLNode *right, *down;
-} OLNode, *OLink; 
-
-typedef struct
-{
-    OLink *rhead, *chead;
-    int r, c, n;
-} CrossList;
-
-// 构建十字链表
-void CreateSMatrix_OL (CrossList &m)
-{
-    int r, c, n;
-    cin >> r >> c >> n;
-    m.r = r, m.c = c, m.n = n;
-
-    m.rhead = new OLink[n + 1];
-    m.chead = new OLink[n + 1];
-    for (int i = 1; i <= n; i++)
-    {
-        m.rhead[i] = NULL;
-        m.chead[i] = NULL;
-    }
-
-    int i, j, e;
-    for (int s = 1; s <= n; s++)
-    {
-        cin >> i >> j >> e;
-        OLNode *p = new OLNode;
-        p -> i = i;
-        p -> j = j;
-        p -> e = e;
-
-        if (m.rhead[i] == NULL || m.rhead[i] -> j > j)
+    public:
+        void set (int i, int j) 
         {
-            p -> right = m.rhead[i];
-            m.rhead[i] = p;
+            x = i; 
+            y = j; 
         }
-        else
+        void set (int i, int j, int k)
         {
-            for (OLNode *q = m.rhead[i]; q && q -> j < j; q = q -> right)
-            {
-                p -> right = q -> right;
-                q -> right = p;
-            }
+            Base::set(i);  // 重定义
+            x = j;
+            y = k;
         }
-        
-        if (m.chead[j] == NULL || m.chead[j] -> i > i)
+        void show ()
         {
-            p -> down = m.chead[j];
-            m.chead[j] = p;
+            cout << "Base class: x = " << Base::x << endl;
+            cout << "Derived class: m = " << x << endl;
+            cout << "Derived class: n = " << y << endl;
         }
-        else
-        {
-            for (OLNode *q = m.chead[j]; q && q -> i < i; q = q -> down)
-            {
-                p -> down = q -> down;
-                q -> down = p;
-            }
-        }
-    }
-}
-
-// 打印矩阵
-void Show (CrossList x)
-{
-    for (int i = 1; i <= x.r; i++)
-        for (OLNode *t = x.rhead[i]; t; t = t -> right) 
-            cout << "r:" << t -> i << " c:" << t -> j << " e:" << t -> e << endl;
-}
+    private:
+        int x, y;
+};
 
 int main ()
 {
-    CrossList c;
+    Derived obj;
+    obj.set(1, 2, 3);   
+    obj.show();
 
-    CreateSMatrix_OL(c);
-
-    Show(c);
+    obj.Base::set(10); // obj.set(10) 不合法
+    obj.set(20, 30);
+    obj.show();
 
     return 0;
 }
