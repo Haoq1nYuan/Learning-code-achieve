@@ -2,16 +2,11 @@
 
 using namespace std;
 
-class CD 
-{
-    public:
-        CD () {cout << "b";}
-        ~CD () {cout << "c";}
-};
-
 int main ()
 {   
-    CD a, *b, d[2];
+    cout << int(':') << endl;
+
+    cout << int('A');
 
     return 0;
 }
