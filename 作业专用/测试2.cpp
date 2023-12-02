@@ -1,12 +1,11 @@
+#include <easyx.h>
 #include <iostream>
 
-using namespace std;
-
-int main ()
-{   
-    cout << int(':') << endl;
-
-    cout << int('A');
-
+int main()
+{
+    initgraph(500,500);
+    circle(0,0,300);
+    getchar();
+    closegraph();
     return 0;
 }

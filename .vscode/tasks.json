@@ -10,7 +10,13 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-I",
+                "C:/mingw64/include/**",
+                "-L",
+                "C:/mingw64/lib/**",
+                "-leasyx",
+                "-lstdc++-6",
             ],
             "options": {
                 "cwd": "C:/mingw64/bin"

@@ -1,6 +1,9 @@
 extern int i;
 
-void fun ()
+namespace ss
 {
-    i++;
+    void fun ()
+    {
+        i++;
+    }
 }
