@@ -61,6 +61,21 @@
     "regex": "cpp",
     "valarray": "cpp"
   },
+  "terminal.integrated.profiles.windows": {
+    // 配置powershell
+    "PowerShell": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell",
+        "args": ["-NoExit", "/c", "chcp 65001", ">null"]
+    },
+    // 配置cmd
+    "cmd": {
+        "path": "cmd.exe",
+        "icon": "terminal-cmd",
+        "args": ["/K chcp 65001 >nul"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
   "C_Cpp.errorSquiggles": "disabled",
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",
@@ -95,5 +110,5 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
 }
