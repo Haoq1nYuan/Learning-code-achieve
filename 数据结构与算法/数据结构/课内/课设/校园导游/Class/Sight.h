@@ -4,15 +4,15 @@ class Sight
     public:
         Sight(int x = 0, int y = 0, string id = "", string name = "", string intro = "", string comment = "");
         Sight(const Sight &s);
-        void Update_Postion(int new_x, int new_y);
-        void Update_ID(string new_id);
-        void Update_Name(string new_name);
-        void Update_Intro(string new_intro);
-        void Update_Comment(string new_comment);
-        string getID();
-        int getX();
-        int getY();
-        void Show ();
+        void Update_Postion(int new_x, int new_y);    // 更新坐标
+        void Update_ID(string new_id);                // 更新编号
+        void Update_Name(string new_name);            // 更新名称
+        void Update_Intro(string new_intro);          // 更新简介
+        void Update_Comment(string new_comment);      // 更新评价
+        string getID();   // 返回编号
+        int getX();       // 返回x坐标
+        int getY();       // 返回y坐标
+        void Show ();   
         ~Sight();
     private:
         string ID, Name, Intro, Comment;
