@@ -3,11 +3,12 @@
 class book: public gen
 {
     protected:
-        string __publisher, __ISBN, __pages;
+        string __publisher, __ISBN;
+        int __pages;
         // 书籍：出版社、ISBN号、总页数。
 
     public:
-        book(string m_id = "", string m_title = "", string m_author = "", string m_rating = "", string m_publisher = "", string m_ISBN = "", string m_pages = ""):
+        book(string m_id = "", string m_title = "", string m_author = "", string m_rating = "", string m_publisher = "", string m_ISBN = "", int m_pages = 0):
         gen(m_id, m_title, m_author, m_rating), __publisher(m_publisher), __ISBN(m_ISBN), __pages(m_pages) {}
         book(const book &b): gen(b.__id, b.__title, b.__author, b.__rating), __publisher(b.__publisher), __ISBN(b.__ISBN), __pages(b.__pages) {}
 
@@ -15,8 +16,8 @@ class book: public gen
 
         string publisher();
         string ISBN();
-        string pages();
-        void edit(string, string, string, string, string, string, string);
+        int pages();
+        void edit(string, string, string, string, string, string, int);
 };
 
 std::ostream& operator<< (std::ostream &out, const book &d)
@@ -37,12 +38,12 @@ string book::ISBN()
     return __ISBN;
 }
 
-string book::pages()
+int book::pages()
 {
     return __pages;
 }
 
-void book::edit(string m_id, string m_title, string m_author, string m_rating, string m_publisher, string m_ISBN, string m_pages)
+void book::edit(string m_id, string m_title, string m_author, string m_rating, string m_publisher, string m_ISBN, int m_pages)
 {
     gen::edit(m_id, m_title, m_author, m_rating);
     __publisher = m_publisher;

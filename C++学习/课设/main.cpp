@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "./class/gen.h"
 #include "./class/book.h"
 #include "./class/disc.h"
@@ -13,11 +12,23 @@ int main ()
         Menu();
         ifbreak = false;
 
-        std::cout << "请选择对应功能："; 
-        std::cin >> operation;
-        std::cout << std::endl;
+        while (true)
+        {
+            std::cout << "请选择对应功能：";    
+            std::cin.sync();
+            std::getline(std::cin, operation);
+            std::cout << std::endl;
 
-        switch (operation)
+            operation.erase(0, operation.find_first_not_of(' '));
+
+            if (!Judge_StoI(operation) || operation == "") 
+                std::cout << "[                请输入合法的类别索引！                ]" << std::endl << std::endl;
+            else if (stoi(operation) > 8 || stoi(operation) < 0) 
+                std::cout << "[                请输入合法的类别索引！                ]" << std::endl << std::endl;
+            else break;
+        }
+
+        switch (stoi(operation))
         {
             case 0:
                 std::cout << "正在退出中...请稍后" << std::endl;
@@ -56,9 +67,6 @@ int main ()
                 break;
             case 8:
                 Read_Media();
-                break;
-            default:
-                std::cout << "[          输入功能不合法, 请输入0-8之间的数!          ]" << std::endl << std::endl;
                 break;
         }
 

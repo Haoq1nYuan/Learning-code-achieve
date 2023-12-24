@@ -10,7 +10,7 @@
 #define MAXSIZE 100
 
 // ²Ù×÷Ë÷Òý
-int operation;
+string operation;
 bool ifsave = true;
 bool ifbreak;
 
@@ -30,7 +30,8 @@ std::map<int, std::vector<std::string>> title = {{1, {"±àºÅ", "±êÌâ", "×÷Õß", "Æ
 
 std::map<int, std::string> guide = {{1, "----------------------------------------------- ÊÓ Æµ ¹â ÅÌ ------------------------------------------------"},
                                     {2, "-------------------------------------------------- Êé  ¼® --------------------------------------------------"}, 
-                                    {3, "-------------------------------------------------- Í¼  »­ --------------------------------------------------"}};
+                                    {3, "-------------------------------------------------- Í¼  »­ --------------------------------------------------"},
+                                    {4, "------------------------------------------------------------------------------------------------------------"}};
 
 // ÐÅÏ¢¶ÁÈëÏà¹Ø±äÁ¿
 std::stringstream information;
@@ -40,7 +41,7 @@ std::vector<string> infor;
 int type, Type;
 string old_name;
 string Name, Id;
-double Len, Wid, Page;
+double Len, Wid;
 string oper;
 
 //-----------Ö÷¿ØÒ³Ãæ-----------//
@@ -77,24 +78,9 @@ bool Input(int mode)
 
     while (information >> tem) infor.push_back(tem);
 
-    if (infor.size() != 7)
-    {
-        std::cout << std::endl;
-        std::cout << "[            ÊäÈëÐÅÏ¢ÊýÁ¿ÓÐÎó£¬ÇëÖØÐÂÊäÈë£¡            ]" << std::endl << std::endl;
-        return false;
-    }
-    else if ((ID_list[stoi(infor[0])] && mode) || (!mode && ID_list[stoi(infor[0])] && infor[0] != Id))
-    {
-        std::cout << std::endl;
-        std::cout << "[               ±àºÅÒÑ¾­´æÔÚ£¬ÇëÖØÐÂÊäÈë£¡              ]" << std::endl << std::endl;
-        return false;
-    }
-    else if (infor[3] != "Î´ÆÀ¼¶" && infor[3] != "Ò»°ã" && infor[3] != "³ÉÈË" && infor[3] != "¶ùÍ¯")
-    {
-        std::cout << std::endl;
-        std::cout << "[   ÆÀ¼¶·ÖÎª£ºÎ´ÆÀ¼¶£¬Ò»°ã£¬³ÉÈË£¬¶ùÍ¯¡£ÇëÖØÐÂÊäÈë£¡   ]" << std::endl << std::endl;
-        return false;
-    }
+    if (infor.size() != 7) {¡­¡­}
+    else if ((ID_list[stoi(infor[0])] && mode) || (!mode && ID_list[stoi(infor[0])] && infor[0] != Id)) {¡­¡­}
+    else if (infor[3] != "Î´ÆÀ¼¶" && infor[3] != "Ò»°ã" && infor[3] != "³ÉÈË" && infor[3] != "¶ùÍ¯") {¡­¡­}
     else
     {
     	ifsave = false;
@@ -122,16 +108,19 @@ bool Judge_StoD(string len, string wid)
     return true;
 }
 
-bool Judge_StoI(string page)
+bool Judge_StoI(string tem)
 {
-    try
+    try 
     {
-        Page = stoi(page);
+        for(int i = 0; i < tem.size(); i++)
+        {
+            if(!i && tem.size() > 1) continue;
+            if(tem[i] < '0' || tem[i] > '9') throw 0;
+        }
     }
-    catch (const std::exception&)
+    catch (int e)
     {
-        std::cout << std::endl << "[                Êé¼®µÄÒ³Êý±ØÐëÊÇÕûÊý£¡                ]" << std::endl << std::endl;
-        return false;
+        if (!e) return false;
     }
 
     return true;
@@ -139,8 +128,8 @@ bool Judge_StoI(string page)
 
 //-----------Ìí¼ÓÐÅÏ¢-----------//
 
-template <typename Media, typename B>
-void Add_Each_Media(Media& m, string id, string title, string author, string rating, string other_1, B other_2, B other_3)
+template <typename Media, typename A, typename B>
+void Add_Each_Media(Media& m, string id, string title, string author, string rating, string other_1, A other_2, B other_3)
 {
     m[id] = { id, title, author, rating, other_1, other_2, other_3 };
 }
@@ -160,8 +149,12 @@ void Add_Media()
         std::getline(std::cin, oper);
         std::cout << std::endl;
 
-        if (oper.size() != 1) std::cout << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl;
-        else if (stoi(oper) > 3 || stoi(oper) < 1) std::cout << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl;
+        oper.erase(0, oper.find_first_not_of(' '));  // É¾³ýÇ°²¿µÄ¿Õ¸ñ£¬ÔÊÐíÎóÊäÈë
+
+        if (!Judge_StoI(oper) || oper == "") // À¹½Ø·ÇÊý×ÖÊäÈë
+            std::cout << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
+        else if (stoi(oper) > 3 || stoi(oper) < 1)  // À¹½Ø·¶Î§Ô½½çÊäÈë
+            std::cout << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
         else break;
     }
 
@@ -175,8 +168,12 @@ void Add_Media()
             if (type== 1) Add_Each_Media(Disc_id_list, infor[0], infor[1], infor[2], infor[3], infor[4], infor[5], infor[6]);
             if (type == 2) 
             {
-                if (!Judge_StoI(infor[6])) continue;
-                Add_Each_Media(Book_id_list, infor[0], infor[1], infor[2], infor[3], infor[4], infor[5], infor[6]);
+                if (!Judge_StoI(infor[6])) 
+                {
+                    std::cout << std::endl << "[                Êé¼®µÄÒ³Êý±ØÐëÊÇÕûÊý£¡                ]" << std::endl << std::endl;
+                    continue;
+                }
+                else Add_Each_Media(Book_id_list, infor[0], infor[1], infor[2], infor[3], infor[4], infor[5], stoi(infor[6]));
             }
             if (type == 3)
             {
@@ -194,8 +191,8 @@ void Add_Media()
 
 //-----------ÐÞ¸ÄÐÅÏ¢-----------//
 
-template <typename Media, typename B>
-void Update_Each_Media(Media& m, string id, string title, string author, string rating, string other_1, B other_2, B other_3)
+template <typename Media, typename A, typename B>
+void Update_Each_Media(Media& m, string id, string title, string author, string rating, string other_1, A other_2, B other_3)
 {
     old_name = m[Id].title();
     m[Id].edit(id, title, author, rating, other_1, other_2, other_3);
@@ -223,11 +220,25 @@ void Update_Media()
 {
     if (ID_list.size())
     {
-        std::cout << "ÇëÊäÈëÄãÏëÐÞ¸ÄµÄÃ½Ìå±àºÅ£º";
-        std::cin >> Id;
-        std::cout << std::endl;
+        while (true)
+        {
+            std::cout << "ÇëÊäÈëÄãÏëÐÞ¸ÄµÄÃ½Ìå±àºÅ£º";
+            std::cin.sync();
+            std::getline(std::cin, Id);
+            std::cout << std::endl;
 
-        if (!ID_list[stoi(Id)]) std::cout << "[                 ²»´æÔÚ¸Ã±àºÅµÄÃ½Ìå£¡                 ]" << std::endl << std::endl;
+            Id.erase(0, Id.find_first_not_of(' '));
+
+            if (!Judge_StoI(Id) || Id == "") 
+                std::cout << "[                  ÇëÊäÈëºÏ·¨µÄ±àºÅ£¡                  ]" << std::endl << std::endl;
+            else break;
+        }
+
+        if (!ID_list[stoi(Id)])   // µ±²éÑ¯²»´æÔÚµÄ¼üÊ±£¬map»á×Ô¶¯´´½¨Ò»¸öÄ¬ÈÏÖµÀ´Æ¥ÅäÕâ¸ö²»´æÔÚµÄ¼ü¡£
+        {
+            ID_list.erase(stoi(Id));
+            std::cout << "[                 ²»´æÔÚ¸Ã±àºÅµÄÃ½Ìå£¡                 ]" << std::endl << std::endl;
+        }
         else 
         {
             type = ID_list[stoi(Id)];
@@ -240,8 +251,12 @@ void Update_Media()
                     if (type == 1) Update_Each_Media(Disc_id_list, infor[0], infor[1], infor[2], infor[3], infor[4], infor[5], infor[6]);
                     if (type == 2) 
                     {
-                        if (!Judge_StoI(infor[6])) continue;
-                        Update_Each_Media(Book_id_list, infor[0], infor[1], infor[2], infor[3], infor[4], infor[5], infor[6]);
+                        if (!Judge_StoI(infor[6])) 
+                        {
+                            std::cout << std::endl << "[                Êé¼®µÄÒ³Êý±ØÐëÊÇÕûÊý£¡                ]" << std::endl << std::endl;
+                            continue;
+                        }
+                        else Add_Each_Media(Book_id_list, infor[0], infor[1], infor[2], infor[3], infor[4], infor[5], stoi(infor[6]));
                     }
                     if (type == 3)
                     {
@@ -270,7 +285,7 @@ void Search_Media_in_Type(Media m)
     std::cout << left << std::setw(10) << title[Type][0] << left << std::setw(20) << title[Type][1] << left << std::setw(20)
                 << left << title[Type][2] << left << std::setw(10) << title[Type][3] << left << std::setw(20) << title[Type][4]
                 << left << std::setw(20) << title[Type][5] << left << std::setw(10) << title[Type][6] << std::endl;
-    std::cout << "------------------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << guide[4] << std::endl;
 
     for (auto i = ID_list.begin(); i != ID_list.end(); i++) 
         if (i->second == Type) std::cout << m[std::to_string(i->first)] << std::endl;
@@ -284,7 +299,7 @@ void Search_Media_in_Title_or_Id(Media m)
     std::cout << left << std::setw(10) << title[Type][0] << left << std::setw(20) << title[Type][1] << left 
 	          << std::setw(20) << title[Type][2] << left << std::setw(10) << title[Type][3] << left << std::setw(20)
 	          << title[Type][4] << left << std::setw(20) << title[Type][5] << left << std::setw(10) << title[Type][6] << std::endl;
-    std::cout << "------------------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << guide[4] << std::endl;
 
     std::cout << m[Id] << std::endl << std::endl;
 }
@@ -299,8 +314,12 @@ void Search_Media()
             std::cin.sync();
             std::getline(std::cin, oper);
 
-            if(oper.size() != 1) std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
-            else if (stoi(oper) > 3 || stoi(oper) < 1) std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
+            oper.erase(0, oper.find_first_not_of(' '));
+
+            if(!Judge_StoI(oper) || oper == "") 
+                std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
+            else if (stoi(oper) > 3 || stoi(oper) < 1) 
+                std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
             else break;
         }
 
@@ -312,7 +331,8 @@ void Search_Media()
             std::cin.sync();
 			std::getline(std::cin, Name);
 
-            if (!Name_to_ID[Name].size()) std::cout << std::endl << "[                   ¸Ã±êÌâ²»´æÔÚ£¡                     ]" << std::endl;
+            if (!Name_to_ID[Name].size()) 
+                std::cout << std::endl << "[                   ¸Ã±êÌâ²»´æÔÚ£¡                     ]" << std::endl;
             else
             {
                 std::cout << std::endl << "ÕÒµ½ÁË£¡Ã½ÌåÐÅÏ¢ÈçÏÂ£º" << std::endl << std::endl;
@@ -330,11 +350,25 @@ void Search_Media()
         }
         else if (type == 2)
         {
-            std::cout << "ÇëÊäÈëÄãÏë²éÑ¯µÄÃ½Ìå±àºÅ£º";
-            std::cin.sync();
-            std::getline(std::cin, Id);
+            while (true)
+            {
+                std::cout << "ÇëÊäÈëÄãÏë²éÑ¯µÄÃ½Ìå±àºÅ£º";
+                std::cin.sync();
+                std::getline(std::cin, Id);
+                std::cout << std::endl;
 
-            if (!ID_list[stoi(Id)]) std::cout << std::endl << "[                    ¸Ã±àºÅ²»´æÔÚ£¡                    ]" << std::endl;
+                Id.erase(0, Id.find_first_not_of(' '));
+
+                if (!Judge_StoI(Id) || Id == "") 
+                    std::cout << "[                  ÇëÊäÈëºÏ·¨µÄ±àºÅ£¡                  ]" << std::endl << std::endl;
+                else break;
+            }
+
+            if (!ID_list[stoi(Id)]) 
+            {
+                ID_list.erase(stoi(Id));
+                std::cout << "[                    ¸Ã±àºÅ²»´æÔÚ£¡                    ]" << std::endl;
+            }
             else
             {
                 std::cout << std::endl << "ÕÒµ½ÁË£¡Ã½ÌåÐÅÏ¢ÈçÏÂ£º" << std::endl << std::endl;
@@ -353,8 +387,12 @@ void Search_Media()
                 std::cin.sync();
                 std::getline(std::cin, oper);
 
-                if (oper.size() != 1) std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
-                else if (stoi(oper) > 3 || stoi(oper) < 1) std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
+                oper.erase(0, oper.find_first_not_of(' '));
+
+                if (!Judge_StoI(oper) || oper == "") 
+                    std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
+                else if (stoi(oper) > 3 || stoi(oper) < 1) 
+                    std::cout << std::endl << "[                ÇëÊäÈëºÏ·¨µÄÀà±ðË÷Òý£¡                ]" << std::endl << std::endl;
                 else break;
             }
 
@@ -367,12 +405,12 @@ void Search_Media()
             }
             if (Type == 2) 
             {
-                if (!Book_id_list.size()) std::cout << "[                   Êé¼®ÀàÃ»ÓÐÎïÆ·£¡                   ]" << std::endl;
+                if (!Book_id_list.size()) std::cout << std::endl << "[                   Êé¼®ÀàÃ»ÓÐÎïÆ·£¡                   ]" << std::endl;
                 else Search_Media_in_Type(Book_id_list);
             }
             if (Type == 3) 
             {
-                if (!Drawing_id_list.size()) std::cout << "[                   Í¼»­ÀàÃ»ÓÐÎïÆ·£¡                   ]" << std::endl;
+                if (!Drawing_id_list.size()) std::cout << std::endl << "[                   Í¼»­ÀàÃ»ÓÐÎïÆ·£¡                   ]" << std::endl;
                 else Search_Media_in_Type(Drawing_id_list);
             }
         }
@@ -392,7 +430,7 @@ void Show_Each_Type(Media m, int type)
     std::cout << left << std::setw(10) << title[type][0] << left << std::setw(20) << title[type][1] << left << std::setw(20) << left
 	<< title[type][2] << left << std::setw(10) << title[type][3] << left << std::setw(20) << title[type][4] << left
 	<< std::setw(20) << title[type][5] << left << std::setw(10) << title[type][6] << std::endl;
-    std::cout << "------------------------------------------------------------------------------------------------------------" << std::endl;         
+    std::cout << guide[4] << std::endl;         
 
     for (auto i = ID_list.begin(); i != ID_list.end(); i++)
         if (i->second == type) std::cout << m[std::to_string(i->first)] << std::endl;
@@ -431,26 +469,37 @@ void Delete_Media()
             std::cin.sync();
             std::getline(std::cin, Id);
 
-            if (!ID_list[stoi(Id)]) std::cout << std::endl << "[                    ¸Ã±àºÅ²»´æÔÚ£¡                    ]" << std::endl << std::endl;
+            Id.erase(0, Id.find_first_not_of(' '));
+
+            if (!Judge_StoI(Id) || Id == "") 
+                std::cout << std::endl << "[                  ÇëÊäÈëºÏ·¨µÄ±àºÅ£¡                  ]" << std::endl << std::endl;
             else break;
         }
 
-        type = ID_list[stoi(Id)];
+        if (!ID_list[stoi(Id)]) 
+        {
+            ID_list.erase(stoi(Id));
+            std::cout << std::endl << "[                    ¸Ã±àºÅ²»´æÔÚ£¡                    ]" << std::endl << std::endl;
+        }
+        else 
+        {
+            type = ID_list[stoi(Id)];
 
-        if (type == 1) Delete_Each_Media(Disc_id_list);
-        if (type == 2) Delete_Each_Media(Book_id_list);
-        if (type == 3) Delete_Each_Media(Drawing_id_list);
+            if (type == 1) Delete_Each_Media(Disc_id_list);
+            if (type == 2) Delete_Each_Media(Book_id_list);
+            if (type == 3) Delete_Each_Media(Drawing_id_list);
 
-        ID_list.erase(stoi(Id));
-        for (auto i = Name_to_ID[Name].begin(); i != Name_to_ID[Name].end(); i++)
-            if (*i == Id)
-            {
-                Name_to_ID[Name].erase(i);
-                break;
-            }
+            ID_list.erase(stoi(Id));
+            for (auto i = Name_to_ID[Name].begin(); i != Name_to_ID[Name].end(); i++)
+                if (*i == Id)
+                {
+                    Name_to_ID[Name].erase(i);
+                    break;
+                }
 
-        std::cout << std::endl << "[                      É¾³ý³É¹¦£¡                      ]" << std::endl << std::endl;
-        ifsave = false;
+            std::cout << std::endl << "[                      É¾³ý³É¹¦£¡                      ]" << std::endl << std::endl;
+            ifsave = false;
+        }
     }
     else std::cout << "[                    µ±Ç°Ã½Ìå¿âÎª¿Õ£¡                  ]" << std::endl << std::endl;
 }
@@ -468,7 +517,7 @@ void Count_Media()
 //-----------±£´æÐÅÏ¢-----------//
 
 template <typename Media>
-void writeMapToFile(Media m, const std::string& filename, int type)
+void writeMapToFile(Media m, const std::string& filename, int type, int mode)
 {
     std::ofstream outFile(filename);
 
@@ -478,7 +527,7 @@ void writeMapToFile(Media m, const std::string& filename, int type)
             if (i->second == type) outFile << m[std::to_string(i->first)] << std::endl;
 
         outFile.close();
-        std::cout << "[                      ±£´æ³É¹¦£¡                      ]" << std::endl << std::endl;
+        if (mode) std::cout << "[                      ±£´æ³É¹¦£¡                      ]" << std::endl << std::endl;
     } 
     else std::cout << "[           Î´ÄÜ³É¹¦´ò¿ªÎÄ¼þ£¬Çë¼ì²éÏà¹ØÔ­Òò           ]" << std::endl << std::endl;
 }
@@ -486,11 +535,11 @@ void writeMapToFile(Media m, const std::string& filename, int type)
 void Save_Media()
 {
     std::cout << "¿ªÊ¼±£´æÊÓÆµ¹âÅÌÀàÃ½ÌåÐÅÏ¢..." << std::endl << std::endl;
-	writeMapToFile(Disc_id_list, "data/Disc_save.txt", 1);
+	writeMapToFile(Disc_id_list, "data/Disc.txt", 1, 1);
     std::cout << "¿ªÊ¼±£´æÊé¼®ÀàÃ½ÌåÐÅÏ¢..." << std::endl << std::endl;
-	writeMapToFile(Book_id_list, "data/Book_save.txt", 2);
+	writeMapToFile(Book_id_list, "data/Book.txt", 2, 1);
     std::cout << "¿ªÊ¼±£´æÍ¼»­ÀàÃ½ÌåÐÅÏ¢..." << std::endl << std::endl;
-	writeMapToFile(Drawing_id_list, "data/Drawing_save.txt", 3);
+	writeMapToFile(Drawing_id_list, "data/Drawing.txt", 3, 1);
 }
 
 //-----------¶ÁÈ¡ÐÅÏ¢-----------//
@@ -512,16 +561,8 @@ void readLinesAndSplit(const std::string& filename, int type)
             while (iss >> token) tokens.push_back(token);
 
             if (type == 1) Add_Each_Media(Disc_id_list, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
-            if (type == 2) 
-            {
-                if (!Judge_StoI(tokens[6])) continue;
-                Add_Each_Media(Book_id_list, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
-            }
-            if (type == 3)
-            {
-                if (!Judge_StoD(tokens[5], tokens[6])) continue;
-                Add_Each_Media(Drawing_id_list, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], Len, Wid);
-            }
+            if (type == 2) Add_Each_Media(Book_id_list, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], stoi(tokens[6]));
+            if (type == 3) Add_Each_Media(Drawing_id_list, tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
 
             ID_list[stoi(tokens[0])] = type;
     		Name_to_ID[tokens[1]].push_back(tokens[0]);
@@ -536,10 +577,19 @@ void readLinesAndSplit(const std::string& filename, int type)
 
 void Read_Media()
 {
+    Disc_id_list.clear();
+    Book_id_list.clear();
+    Drawing_id_list.clear();
+    ID_list.clear();
+    Name_to_ID.clear();
+
     std::cout << "¿ªÊ¼¶ÁÈëÊÓÆµ¹âÅÌÀàÃ½ÌåÐÅÏ¢..." << std::endl << std::endl;
 	readLinesAndSplit("data/Disc.txt", 1);
+    writeMapToFile(Disc_id_list, "data/backup/Disc.txt", 1, 0);
     std::cout << "¿ªÊ¼¶ÁÈëÊé¼®ÀàÃ½ÌåÐÅÏ¢..." << std::endl << std::endl;
 	readLinesAndSplit("data/Book.txt", 2);
+    writeMapToFile(Book_id_list, "data/backup/Book.txt", 2, 0);
     std::cout << "¿ªÊ¼¶ÁÈëÍ¼»­ÀàÃ½ÌåÐÅÏ¢..." << std::endl << std::endl;
 	readLinesAndSplit("data/Drawing.txt", 3);
+    writeMapToFile(Drawing_id_list, "data/backup/Drawing.txt", 3, 0);
 }
