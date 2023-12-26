@@ -23,8 +23,8 @@ class book: public gen
 std::ostream& operator<< (std::ostream &out, const book &d)
 {
     using std::left;
-    out << left << std::setw(10) << d.__id << left << std::setw(20) << d.__title << left << std::setw(20) << d.__author << left
-        << std::setw(10) << d.__rating << left << std::setw(20) << d.__publisher << left << std::setw(20) << d.__ISBN << left << std::setw(10) << d.__pages;
+    out << left << std::setw(10) << d.__id << std::setw(20) << d.__title << std::setw(20) << d.__author << std::setw(10)
+        << d.__rating << std::setw(20) << d.__publisher << std::setw(20) << d.__ISBN << std::setw(10) << d.__pages;
     return out;
 }
 

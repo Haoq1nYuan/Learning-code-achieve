@@ -24,8 +24,8 @@ class disc: public gen
 std::ostream& operator<< (std::ostream &out, const disc &d)
 {
     using std::left;
-    out << left << std::setw(10) << d.__id << left << std::setw(20) << d.__title << left << std::setw(20) << d.__author << left
-        << std::setw(10) << d.__rating << left << std::setw(20) << d.__producer << left << std::setw(20) << d.__time << left << std::setw(10) << d.__duration;
+    out << left << std::setw(10) << d.__id << std::setw(20) << d.__title << std::setw(20) << d.__author << std::setw(10)
+        << d.__rating << std::setw(20) << d.__producer << std::setw(20) << d.__time << std::setw(10) << d.__duration;
     return out;
 }
 

@@ -1,17 +1,25 @@
-#include <map>
 #include <iostream>
 
 using namespace std;
 
-map<int, int> type;
+int divide (int x, int y) throw (int)
+{
+    if (y == 0) throw x;
+    return x / y;
+}
 
 int main ()
 {
-    type[101] = 1;
-    type[99] = 2;
-    type[7] = 3;
-
-    for (auto i = type.begin(); i != type.end(); i++) cout << i->first << ' ';
+    try 
+    {
+        cout << divide(5, 2) << endl;
+        cout << divide(8, 0) << endl;
+        cout << divide(7, 1) << endl;
+    }
+    catch (int e)
+    {
+        cout << e << " is divided by 0." << endl;
+    }
 
     return 0;
 }

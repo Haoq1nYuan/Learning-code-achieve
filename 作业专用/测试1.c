@@ -3,18 +3,7 @@
 
 int main ()
 {
-    int a, b, c;
-    double p, S, T;
-
-    while (scanf("%d %d %d", &a, &b, &c) != EOF)
-        if (a + c > b && a + b > c && b + c > a)
-        {
-            p = (a + b + c) / 2;
-            T = p * (p - a) * (p - b) * (p - c);
-            S = sqrt(T);
-            printf("%.2f\n", S); 
-        }
-        else printf("-1\n");
+    char *a = "qqq";
     
     return 0;
 }

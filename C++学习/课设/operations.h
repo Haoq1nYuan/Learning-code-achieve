@@ -78,9 +78,24 @@ bool Input(int mode)
 
     while (information >> tem) infor.push_back(tem);
 
-    if (infor.size() != 7) {……}
-    else if ((ID_list[stoi(infor[0])] && mode) || (!mode && ID_list[stoi(infor[0])] && infor[0] != Id)) {……}
-    else if (infor[3] != "未评级" && infor[3] != "一般" && infor[3] != "成人" && infor[3] != "儿童") {……}
+    if (infor.size() != 7)
+    {
+        std::cout << std::endl;
+        std::cout << "[            输入信息数量有误，请重新输入！            ]" << std::endl << std::endl;
+        return false;
+    }
+    else if ((ID_list[stoi(infor[0])] && mode) || (!mode && ID_list[stoi(infor[0])] && infor[0] != Id))
+    {
+        std::cout << std::endl;
+        std::cout << "[               编号已经存在，请重新输入！              ]" << std::endl << std::endl;
+        return false;
+    }
+    else if (infor[3] != "未评级" && infor[3] != "一般" && infor[3] != "成人" && infor[3] != "儿童")
+    {
+        std::cout << std::endl;
+        std::cout << "[   评级分为：未评级，一般，成人，儿童。请重新输入！   ]" << std::endl << std::endl;
+        return false;
+    }
     else
     {
     	ifsave = false;

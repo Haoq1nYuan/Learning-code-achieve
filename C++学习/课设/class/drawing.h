@@ -23,8 +23,8 @@ class drawing: public gen
 std::ostream& operator<< (std::ostream &out, const drawing &d)
 {
     using std::left;
-    out << left << std::setw(10) << d.__id << left << std::setw(20) << d.__title << left << std::setw(20) << d.__author << left
-        << std::setw(10) << d.__rating << left << std::setw(20) << d.__region << left << std::setw(20) << d.__length << left << std::setw(10) << d.__width;
+    out << left << std::setw(10) << d.__id << std::setw(20) << d.__title << std::setw(20) << d.__author << std::setw(10) 
+        << d.__rating << std::setw(20) << d.__region << std::setw(20) << d.__length << std::setw(10) << d.__width;
     return out;
 }
 
