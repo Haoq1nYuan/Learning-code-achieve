@@ -1,7 +1,6 @@
 //https://www.acwing.com/problem/content/description/274/
 
-//注意状态表示：f[i][j] 表示由第一个序列的前 i 个字母和第二个序列的前 j 个字母
-//且以 b[j] 结尾的所有 LICS 的长度最大值
+//注意状态表示：f[i][j] 表示由第一个序列的前 i 个字母和第二个序列的前 j 个字母且以 b[j] 结尾的所有 LICS 的长度最大值
 
 //朴素版，三重循环---TLE
 #include <iostream>
@@ -28,14 +27,11 @@ int main ()
             //选 a[i] 的情况
             if (a[i] == b[j])
             {
-                int maxv = 1;
                 for (int k = 1; k < j; k++)
                     if (b[j] > b[k])
-                        maxv = max(maxv, f[i - 1][k] + 1);
+                        f[i][j] = max(f[i][j], f[i - 1][k] + 1);
                         //对于上面为什么是 f[i - 1][k]，因为此时 a[i] 已经与 b[j] 匹配，
                         //当我们讨论 b[j] 前面一个匹配的 b[k] 时，自然不能将 a[i] 包含进去，以免出现错误
-                       
-                f[i][j] = max(f[i][j], maxv);
             }
         }
         

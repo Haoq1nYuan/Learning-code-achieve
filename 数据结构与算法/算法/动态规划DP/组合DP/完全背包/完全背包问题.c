@@ -39,7 +39,7 @@ int main ( int argc, char *argv[] )
 //优化掉k层循环
 /*
 dp[i][j] = max( dp[i-1][j], dp[i-1][j-v[i]]+w[i], dp[i-1][j-2*v[i]]+2*w[i],……, dp[i-1][0]+j )
-dp[i][j-x[i]] = max(        dp[i-1][j-v[i]]     , dp[i-1][j-2*v[i]]+  w[i],……, dp[i-1][0]+j-w[i] )
+dp[i][j-v[i]] = max(        dp[i-1][j-v[i]]     , dp[i-1][j-2*v[i]]+  w[i],……, dp[i-1][0]+j-w[i] )
 两式相结合：dp[i][j] = max( dp[i-1][j], dp[i][j-v[i]]+w[i] ).这样可以优化掉k层循环
 */
 #include<stdio.h>
@@ -155,7 +155,7 @@ int main ( int argc, char *argv[] )
     {
         scanf( "%d%d", &v, &w );
         /*注意下面j是从小到大循环，和0-1背包问题优化不同
-        因为替换掉的是dp[i][j-v]，完全背包问题要求第i层每个j的计算是用到的都是第本层的数据
+        因为替换掉的是dp[i][j-v]，完全背包问题要求第i层每个j的计算是用到的都是本层的数据
         从小到大循环可以保证在计算较大的j时 j - v 已经被更新过*/
         for ( int j = v; j <= V ; j++ )   
         {                                 

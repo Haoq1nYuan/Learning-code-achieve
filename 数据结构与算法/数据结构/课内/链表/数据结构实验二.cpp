@@ -104,8 +104,6 @@ int main ()
     CreateList_L(La, 5);
     CreateList_L(Lb, 6);
 
-    
-
     MergeList_L(La, Lb, Lc);
 
     cout << "合并后的链表元素为：" << endl; 
