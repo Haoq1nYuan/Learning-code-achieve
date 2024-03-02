@@ -32,7 +32,7 @@ int main ()
     {
         cin >> a >> b >> c;
                    
-        for (int i = n; i >= 0; i--)
+        for (int i = n; i >= 0; i--)  // 此处要循环至0，因为必须确保f数组从f[0][0]处开始更新
             for (int j = m; j >= 0; j--)
                 f[i][j] = min(f[i][j], f[max(0, i - a)][max(0, j - b)] + c);
     }

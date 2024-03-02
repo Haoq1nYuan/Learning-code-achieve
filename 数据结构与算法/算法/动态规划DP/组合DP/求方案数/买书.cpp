@@ -1,5 +1,12 @@
 //https://www.acwing.com/problem/content/1025/
 
+// k层循环的优化方法与完全背包推导过程类似
+/*
+f[i][j] = f[i - 1][j] + f[i - 1][j - c[i]] + ……
+f[i][j - c[i]] = f[i - 1][j - c[i]] + f[i - 1][j - 2 * c[i]] + ……
+f[i][j] = f[i - 1][j] + f[i][j - c[i]]
+*/
+
 #include <iostream>
 
 using namespace std;
@@ -16,9 +23,9 @@ int main ()
     f[0] = 1;
     
     for (int i = 1; i <= 4; i++)
-        for (int j = a[i]; j <= n; j++)
+        for (int j = a[i]; j <= n; j++)  
             f[j] += f[j - a[i]];
-            
+
     cout << f[n] << endl;
     
     return 0;

@@ -117,3 +117,91 @@ int main ( int argc, char *argv[] )
 
     return 0;
 }
+
+// 保留f数组二维，但省去v，w数组：爆内存
+// 需要注意的是，由于保留了第一维，所以需要将物品数更新为重新分组的最大组数，此题条件下为 11 * 1000 = 11000
+#include <iostream>
+
+using namespace std;
+
+const int N = 11005, V = 2005;
+
+int n, m, v, w, s, c = 1;
+int f[N][V];
+
+int main ()
+{
+    cin >> n >> m;
+    
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> v >> w >> s;
+        
+        for (int k = 1; k <= s; k *= 2)
+        {
+            for (int j = 1; j <= m; j++)
+            {
+                f[c][j] = f[c - 1][j];
+                
+                if (j >= k * v) f[c][j] = max(f[c][j], f[c - 1][j - k * v] + k * w);
+            }
+            
+            c++;
+            s -= k;
+        }
+            
+        if (s)
+        {
+            for (int j = 1; j <= m; j++)
+            {
+                f[c][j] = f[c - 1][j];
+                
+                if (j >= s * v) f[c][j] = max(f[c][j], f[c - 1][j - s * v] + s * w);
+            }
+            
+            c++;
+        }
+    }
+    
+    cout << f[c - 1][m] << endl;
+    
+    return 0;
+}
+
+// 在上一阶段基础上优化掉第一维
+#include <iostream>
+
+using namespace std;
+
+const int V = 2005;
+
+int n, m, v, w, s;
+int f[V];
+
+int main ()
+{
+    cin >> n >> m;
+    
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> v >> w >> s;
+        
+        for (int k = 1; k <= s; k *= 2)
+        {
+            for (int j = m; j >= k * v; j--)
+                f[j] = max(f[j], f[j - k * v] + k * w);
+     
+            s -= k;
+        }
+            
+        if (s)
+        {
+            for (int j = m; j >= s * v; j--)
+                f[j] = max(f[j], f[j - s * v] + s * w);
+        }
+    }
+    
+    cout << f[m] << endl;
+    
+    return 0;
+}
