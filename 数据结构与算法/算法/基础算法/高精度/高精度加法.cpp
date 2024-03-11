@@ -40,6 +40,7 @@ int main ()
     return 0;
 }
  */
+
 //vectorÈİÆ÷
 #include <iostream>
 #include <vector>

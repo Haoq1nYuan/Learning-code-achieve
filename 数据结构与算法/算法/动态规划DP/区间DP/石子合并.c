@@ -11,6 +11,7 @@
     3.左半边的最后一堆是第j-1堆.
 */
 #include <stdio.h>
+#include <string.h>
 #define min(a,b) ((a)>(b)?(b):(a))
 #define N 305
 
@@ -25,12 +26,15 @@ int main ( int argc, char *argv[] )
         scanf( "%d", &m[i] );
         s[i] += s[i-1] + m[i];  //前缀和便于之后将左右两堆物品合并时快速求出花费的代价
     }
+
+    memset(dp, 0x3f, sizeof dp);
+    for (int i = 0; i <= n; i++) dp[i][i] = 0;  // 合并一个石子的代价为0
     
     for ( int len = 2; len <= n; len++ )  //先枚举区间长度
         for ( int i = 1; i + len - 1 <= n; i++ )    //再枚举左右端点
         {
             int j = i + len - 1;
-            dp[i][j] = 0x3f3f3f3f;   //此处把待赋值的变量初始化为无穷大，以便之后的min比较
+
             for ( int k = i; k < j; k++ )
                 dp[i][j] = min( dp[i][j], dp[i][k] + dp[k + 1][j] + s[j] - s[i-1] );
         }

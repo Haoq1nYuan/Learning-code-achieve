@@ -30,7 +30,7 @@ int main ()
                 dp[i][j] = max(dp[i][j], dp[i][k] + m[k] * m[i] * m[j] + dp[k][j]);
         }   
     
-    //将所有窗口中所有全域情况娶个最大值
+    //将所有窗口中所有情况取个最大值
     int res = 0;
     for (int l = 1; l <= n; l++) res = max(res, dp[l][l + n]);
     
