@@ -70,3 +70,63 @@ int main ()
     
     return 0;
 }
+
+// 另一种解法
+#include <iostream>
+#include <queue>
+#include <cstring>
+#include <unordered_map>
+
+using namespace std;
+
+char ch;
+string str, tar = "12345678x";
+queue<string> q;
+unordered_map<string, int> d;
+int m[] = {0, 3, -3, 1, -1};
+
+int bfs ()
+{
+    q.push(str);
+    
+    while (q.size())
+    {
+        string t = q.front();
+        q.pop();
+        
+        if (t == tar) return d[t];
+        
+        for (int k = 1; k <= 4; k++)
+        {
+            int idx = t.find('x');
+            
+            if (idx + m[k] < 0 || idx + m[k] >= 9) continue;
+            if ((idx == 3 || idx == 6) && m[k] == -1) continue;
+            if ((idx == 2 || idx == 5) && m[k] == 1) continue;
+            
+            string tem = t;
+            swap(tem[idx], tem[idx + m[k]]);
+            
+            if (!d[tem])
+            {
+                q.push(tem);
+                d[tem] = d[t] + 1;
+            }
+        }
+    }
+    
+    return -1;
+}
+
+int main ()
+{
+    for (int i = 1; i <= 9; i++) 
+    {
+        cin >> ch;
+        str = str + ch;
+    }
+    
+    cout << bfs() << endl;
+    
+    return 0;
+}
