@@ -1,19 +1,61 @@
-//https://www.acwing.com/problem/content/903/
+// 暴力解法
+#include <iostream>
 
-//记忆化搜索
+using namespace std;
 
-//本题的路径长是算上起点的，所以说已被计算过的点的值最小为1
-//故无需将所有点的值初始化为-1
- 
-/*
-状态表示：dp[i][j]表示所有从(i,j)开始划的路线的长度的集合，属性是max
-状态计算：
-    由于整个矩阵是无规则排列的，所以可能出现某个值在用到的时候还未被计算出来，所以必须用到DP函数的递归
-    对于向哪划，可以用偏移量解决
-*/
-#include <stdio.h>
-#define max(c,d) ((c)>(d)?(c):(d))
-#define N 305
+const int N = 105;
+
+int n, m, g[N][N], ans;
+bool st[N][N];
+
+int dx[] = {0, -1, 0, 1}, dy[] = {1, 0, -1, 0};
+
+void dfs (int x, int y, int len)
+{
+    for (int k = 0; k < 4; k++)
+    {
+        int a = x + dx[k], b = y + dy[k];
+
+        if (a < 1 || a > n || b < 1 || b > m) continue;
+
+        if (!st[a][b] && g[a][b] <= g[x][y])
+        {
+            st[a][b] = true;
+
+            dfs(a, b, len + 1);
+
+            st[a][b] = false;
+        } 
+    }
+
+    if (ans < len) 
+    {
+        ans = len;
+        return;
+    }
+}   
+
+int main ()
+{
+    cin >> n >> m;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++) cin >> g[i][j];
+
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+            dfs(i, j, 1);
+
+    cout << ans << endl;
+
+    return 0;
+}
+
+// 记忆化搜索
+#include <iostream>
+
+using namespace std;
+
+const int N = 105;
 
 int r, c, h[N][N], ans;
 int dp[N][N];

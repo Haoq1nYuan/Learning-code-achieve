@@ -59,8 +59,27 @@
     "list": "cpp",
     "unordered_set": "cpp",
     "regex": "cpp",
-    "valarray": "cpp"
-  },
+    "valarray": "cpp",
+    "cfenv": "cpp",
+    "charconv": "cpp",
+    "chrono": "cpp",
+    "codecvt": "cpp",
+    "complex": "cpp",
+    "condition_variable": "cpp",
+    "csetjmp": "cpp",
+    "csignal": "cpp",
+    "ctime": "cpp",
+    "cuchar": "cpp",
+    "map": "cpp",
+    "ratio": "cpp",
+    "future": "cpp",
+    "iomanip": "cpp",
+    "mutex": "cpp",
+    "scoped_allocator": "cpp",
+    "shared_mutex": "cpp",
+    "thread": "cpp",
+    "typeindex": "cpp"
+},
   "terminal.integrated.profiles.windows": {
     // 配置powershell
     "PowerShell": {

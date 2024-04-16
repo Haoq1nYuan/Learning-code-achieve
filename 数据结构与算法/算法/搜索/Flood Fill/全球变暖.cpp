@@ -1,7 +1,6 @@
 //https://www.acwing.com/problem/content/1235/
 
 //flood fill算法
-
 /*
 1.先求出有多少个不同的连通块
   循环遍历矩阵，对遇到的没有被标记且为陆地的点进行bfs或dfs操作，
