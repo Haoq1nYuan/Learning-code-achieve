@@ -18,11 +18,14 @@ int main ()
     {
         sort(x + 1, x + 1 + n);
 
-        for (int i = 1; i < n; i++) dist[i] = x[i + 1] - x[i];
+        for (int i = 1; i < n; i++) dist[i] = x[i + 1] - x[i] - 1;
 
-        sort(dist + 1, dist + n);
+        sort(dist + 1, dist + n, greater<int>());
 
-        for (int i = 1; i <= n - m; i++) ans += dist[i];
+        ans = x[n] - x[1] + 1;
+
+        int cnt = 1;
+        while (cnt < m) ans = ans - dist[cnt++];
 
         cout << ans << endl;
     }   

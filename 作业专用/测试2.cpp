@@ -1,87 +1,76 @@
 #include<iostream>
-#include<algorithm>
 
 using namespace std;
 
-int sum[400010];
-
-int ans;
-
-void binary_search(int x,int length)
+int arr[10][10];				
+int ans;		
+			
+bool judge(int x, int y)		
 {
-    int left = 1, right = length-1;
-    while (left <= right)
-    {
-        int mid = (left + right) / 2;
+	int i, j;
+    
+	for (j = 1; j <= 8; j++)
+	{
+		if (arr[j][y]) return false;
+	}
 
-        if (sum[mid] == x)
-        {
-            ans++;
-            int i=mid,j=mid;
-            //向前搜索
-            while (sum[i - 1] == x)
-            {
-                ans++;
-                i--;
-            }
-            //向后搜索
-            while (sum[j + 1] == x)
-            {
-                ans++;
-                j++;
-            }
-            return;
-        }
-        else if (sum[mid] > x) right = mid - 1;
-        else left = mid + 1;
-    }
+	for (i = 1; i <= 8; i++)
+		for (j = 1; j <= 8; j++)
+			if (abs(x - i) == abs(y - j) && arr[i][j] == 1)	return false;
 
-    return;
+	return true;
+}
+
+void dfs(int v)					
+{
+	if (v > 8)					
+	{
+		ans++;					
+		return;
+	}
+
+	int i, j, flag = 1;							
+	for (i = 1; i <= 8; i++)
+	{
+		if (arr[v][i])				
+		{
+			flag = 0;
+			break;
+		}
+	}
+
+	if (flag)
+	{
+		for (i = 1; i <= 8; i++)
+		{
+			if (judge(v, i))
+			{
+				arr[v][i] = 1;
+				dfs(v + 1);
+				arr[v][i] = 0;			
+			}
+		}
+	}
+	else
+	{
+		dfs(v + 1);
+	}
 }
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        int n;
-        cin >> n;
+	int i, j;
+    
+	for (i = 1; i <= 8; i++)
+	{
+		for (j = 1; j <= 8; j++)
+		{
+			cin >> arr[i][j];
+		}
+	}
 
-        int arr[2010][10];
-        int i, j;
-        for (i = 1; i <= n; i++)
-        {
-            for (j = 1; j <= 4; j++)
-            {
-                cin >> arr[i][j];
-            }
-        }
+	dfs(1);			
 
-        int k=1;
-        for (i = 1; i <= n; i++)
-        {
-            for (j = 1; j <= n; j++)
-            {
-                sum[k] = arr[i][1] + arr[j][2];
-                k++;
-            }
-        }
+	cout << ans << endl;
 
-        sort(sum + 1, sum + k);
-        int length = k;
-
-        for (i = 1; i <= n; i++)
-        {
-            for (j = 1; j <= n; j++)
-            {
-                int sum = arr[i][3] + arr[j][4];
-                binary_search(-sum, length);
-            }
-        }
-
-        cout << ans << endl;
-        
-        ans = 0;
-    }
-    return 0;
+	return 0;
 }
