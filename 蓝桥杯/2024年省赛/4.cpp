@@ -23,7 +23,7 @@ bool dfs (int x, int y, int state, int cnt)
     {
         int a = x + dx2[k], b = y + dy2[k];
 
-        cout << x << ' ' << y << ' ' << a << ' ' << b << endl;
+        //cout << x << ' ' << y << ' ' << a << ' ' << b << endl;
 
         if (!st[a][b] && g[a][b] == state && a >= 1 && a <= n && b >= 1 && b <= n && !st2[x + a][y + b])
         {
