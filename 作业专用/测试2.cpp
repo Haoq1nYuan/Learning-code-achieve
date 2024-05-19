@@ -1,14 +1,16 @@
 #include <iostream>
+#include <bitset>
 
 using namespace std;
 
-int main ()
-{   
-    int a = -1;
-    unsigned int b = 2147483648;
+string k;
 
-    printf("a = %u = %X = %d\n", a, a, a);
-    printf("b = %u = %X = %d", b, b, b);
+int main ()
+{
+    bitset<8> tem1('a');
+    bitset<8> tem2('p');
+
+    cout << tem1 << ' ' << tem2 << endl;
 
     return 0;
 }

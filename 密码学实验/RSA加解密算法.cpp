@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <ctime>
 
 using namespace std;
@@ -57,7 +58,7 @@ void Init ()
 	
 	// 随机生成公私钥 
 	int public_key_idx = rand() % idx1, private_key_idx = rand() % idx1;
-	while (public_key_idx == private_key_idx || Keys[public_key_idx] * Keys[private_key_idx] <= 122)
+	while (public_key_idx == private_key_idx || Keys[public_key_idx] * Keys[private_key_idx] < 122)
 	{
 		public_key_idx = rand() % idx1;
 		private_key_idx = rand() % idx1;
@@ -80,12 +81,12 @@ void Get ()
 			
 	int e_idx = rand() % idx2;
 	e = Es[e_idx];
-	
+
 	// 取出最小的逆元 
     for (int k = 1; ; k++)
-        if ((k * fn + 1) % e == 0)
+        if ((k * e - 1) % fn == 0)
         {
-            d = (k * fn + 1) / e;
+            d = k;
             break;
         }
 }
@@ -104,12 +105,20 @@ void Coding ()
 
 void DisCoding ()
 {
-    cout << "The originalText is: ";
-    for (char ch: codedText)
-    {
-        int tem = int(ch);
+    stringstream str(codedText);
+    string sstr;
 
-        cout << qmi(tem, d, n) << ' ';
+    cout << "The originalText is: ";
+    while (str >> sstr)
+    {
+        int idx = 0, tem = 0;
+        while (sstr[idx])
+        {
+            tem = tem * 10 + int(sstr[idx] - '0');
+            idx++;
+        }
+
+        cout << char(qmi(tem, d, n));
     }
     cout << endl;
 }
@@ -123,38 +132,50 @@ int main ()
 	cout << "The public_Key is: " << "(" << e << ", " << n << ")" << endl;
     cout << "The private_Key is: " << "(" << d << ", " << n<< ")" << endl;
 
-    cout << "Coding or DisCoding (1. Coding, 2. DisCoding): ";
+    cout << "Coding or DisCoding (1. Coding, 2. DisCoding, 3. Exit): ";
     cin >> choice;
     while (choice != 1 && choice != 2)
     {
-        cout << "Type again, coding or disCoding (1. Coding, 2. DisCoding): ";
+        cout << "Type again, coding or disCoding (1. Coding, 2. DisCoding, 3. Exit): ";
         cin >> choice;
     }
 
-    if (choice == 1)
+    while (choice != 3)
     {
-        cout << "Now give me the originalText: " << endl;
-        cin >> originalText;
-        codedText = originalText;
+        getchar();
 
-        cout << "The originalText is: ";
-        for (char ch: originalText) cout << int(ch) << ' ';
-        cout << endl;
-        
-        Coding();
-    }
+        if (choice == 1)
+        {
+            cout << "Now give me the originalText: ";
+            getline(cin, originalText);
+            codedText = originalText;
 
-    if (choice == 2)
-    {
-        cout << "Now give me the codedText: " << endl;
-        cin >> codedText;
-        originalText = codedText;
+            cout << "The originalText is: ";
+            for (char ch: originalText) cout << ch;
+            cout << endl;
+            
+            Coding();
+        }
 
-        cout << "The codedText is: ";
-        for (char ch: codedText) cout << int(ch) << ' ';
-        cout << endl;
-        
-        DisCoding();
+        if (choice == 2)
+        {
+            cout << "Now give me the codedText: ";
+            getline(cin, codedText);
+
+            cout << "The codedText is: ";
+            for (char ch: codedText) cout << ch;
+            cout << endl;
+            
+            DisCoding();
+        }
+
+        cout << "Coding or DisCoding (1. Coding, 2. DisCoding, 3. Exit): ";
+        cin >> choice;
+        while (choice != 1 && choice != 2 && choice != 3)
+        {
+            cout << "Type again, coding or disCoding (1. Coding, 2. DisCoding, 3. Exit): ";
+            cin >> choice;
+        }
     }
 
 	return 0;
