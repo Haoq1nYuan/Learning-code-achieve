@@ -16,6 +16,7 @@ int main ()
         t[++k] = n % jz;
         n /= jz;
     }
+    
     t[++k] = n;
 
     for (int i = k; i; i--) cout << t[i];

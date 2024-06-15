@@ -1,6 +1,9 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
+#include <chrono>  // 添加这个库来测量时间
+
+using namespace std::chrono;  // 添加这个命名空间来使用时间函数
 
 using namespace std;
 
@@ -93,6 +96,8 @@ void Get ()
 
 void Coding ()
 {
+    auto start = high_resolution_clock::now();
+
     cout << "The codedText is: ";
 	for (char ch: originalText)
     {
@@ -101,10 +106,17 @@ void Coding ()
         cout << qmi(tem, e, n) << ' ';
     }
     cout << endl;
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    cout << "Time taken by Coding: " << duration.count() << " microseconds" << endl;
 }
 
 void DisCoding ()
 {
+    auto start = high_resolution_clock::now();
+
     stringstream str(codedText);
     string sstr;
 
@@ -121,6 +133,11 @@ void DisCoding ()
         cout << char(qmi(tem, d, n));
     }
     cout << endl;
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    cout << "Time taken by DisCoding: " << duration.count() << " microseconds" << endl;
 }
 
 int main ()
