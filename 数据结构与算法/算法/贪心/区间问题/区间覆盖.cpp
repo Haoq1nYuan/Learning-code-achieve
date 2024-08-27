@@ -39,7 +39,7 @@ int main ()
         int j = i, r = -2e9;
         //用j来枚举每一个左端点 <= s 的区间，寻找最大的右端点
         while (j < n && range[j].l <= s)
-        {
+        {   
             r = max(r, range[j].r);
             j++;
         }

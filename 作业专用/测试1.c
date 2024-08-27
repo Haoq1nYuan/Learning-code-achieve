@@ -5,7 +5,7 @@ int main ()
     int flag = 1;
     while (flag)
     {
-        char tem[25];  // ¶ÁÈëµÄ×Ö·û´®´æ´¢ÔÚtemÖĞ
+        char tem[25];  // è¯»å…¥çš„å­—ç¬¦ä¸²å­˜å‚¨åœ¨temä¸­
         int idx = 0;
 
         gets(tem);
@@ -14,7 +14,7 @@ int main ()
         if (tem[idx - 1] == 'E') flag = 0;
 
         /*
-        ÆäËû´úÂë
+        å…¶ä»–ä»£ç 
         */
     }
 

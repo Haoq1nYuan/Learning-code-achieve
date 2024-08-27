@@ -41,13 +41,6 @@ int main ()
                 ans += C[i].b;
             }
 
-        // 此法不易懂
-        // int suma = 0, sumb = 0;
-        // ans += C[1].a + C[n].b;
-        // for (int i = 2; i <= n; i++) suma += C[i].a;
-        // for (int i = 1; i < n; i++) sumb += C[i].b;
-        // ans += max(suma, sumb);
-
         cout << ans << endl;
     }
 

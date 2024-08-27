@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-const int N = 205, M = 10010;
+const int N = 205, M = 20010;
 
 int n, m, k;
 

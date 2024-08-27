@@ -1,4 +1,4 @@
-// // 暴力解法
+// 暴力解法
 #include <iostream>
 
 using namespace std;
