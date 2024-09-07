@@ -21,7 +21,7 @@ int main ()
         cin >> n;
         
         memset(f, 0, sizeof f);
-        f[0][1] = -0x3f3f3f3f;           // ���Ϸ�������ʼ��Ϊ��������ڴ�û��Ӱ�졣
+        f[0][1] = -0x3f3f3f3f;           // 不合法方案初始化为负无穷，对于答案没有影响。
         
         for (int i = 1; i <= n; i++)
         {

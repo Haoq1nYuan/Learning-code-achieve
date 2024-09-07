@@ -1,6 +1,6 @@
 // https://www.acwing.com/problem/content/description/1059/
 
-// ¹æ¶¨jÎ¬£ºÒ»´ÎÂòÈëÂô³öºó+1
+// è§„å®šjç»´ï¼šä¸€æ¬¡ä¹°å…¥å–å‡ºå+1
 #include <iostream>
 #include <cstring>
 
@@ -22,7 +22,7 @@ int main ()
     {
         cin >> w;
         
-        f[i][0][1] = f[i - 1][0][0] - w;  // ³õ´ÎÂòÈëµÄÌØÊâÇé¿ö
+        f[i][0][1] = f[i - 1][0][0] - w;  // åˆæ¬¡ä¹°å…¥çš„ç‰¹æ®Šæƒ…å†µ
         
         for (int j = 1; j <= k; j++)
         {
@@ -39,7 +39,7 @@ int main ()
     return 0;
 }
 
-// ¹æ¶¨jÎ¬£ºÒ»´ÎÂòÈëºó¾Í+1
+// è§„å®šjç»´ï¼šä¸€æ¬¡ä¹°å…¥åå°±+1
 #include <iostream>
 #include <cstring>
 
