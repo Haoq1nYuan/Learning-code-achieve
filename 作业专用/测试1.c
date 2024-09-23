@@ -1,22 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+int product(int, int);
 
 int main ()
 {
-    int flag = 1;
-    while (flag)
-    {
-        char tem[25];  // 读入的字符串存储在tem中
-        int idx = 0;
-
-        gets(tem);
-
-        while (tem[idx]) idx++;
-        if (tem[idx - 1] == 'E') flag = 0;
-
-        /*
-        其他代码
-        */
-    }
-
+    int x, y, s;
+    scanf("%d,%d", &x, &y);
+    s=product(x, y);
+    printf("%d", s);
     return 0;
+}
+
+int product (int a, int b)
+{
+    int mul;
+    mul = a * b;
+    return mul;
 }
