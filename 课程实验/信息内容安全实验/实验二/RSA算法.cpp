@@ -1,9 +1,9 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
-#include <chrono>  // Ìí¼ÓÕâ¸ö¿âÀ´²âÁ¿Ê±¼ä
+#include <chrono>  // æ·»åŠ è¿™ä¸ªåº“æ¥æµ‹é‡æ—¶é—´
 
-using namespace std::chrono;  // Ìí¼ÓÕâ¸öÃüÃû¿Õ¼äÀ´Ê¹ÓÃÊ±¼äº¯Êı
+using namespace std::chrono;  // æ·»åŠ è¿™ä¸ªå‘½åç©ºé—´æ¥ä½¿ç”¨æ—¶é—´å‡½æ•°
 
 using namespace std;
 
@@ -18,13 +18,13 @@ int choice;
 
 string originalText, codedText;
 
-// Õ·×ªÏà³ıÇó×î´ó¹«ÒòÊı
+// è¾—è½¬ç›¸é™¤æ±‚æœ€å¤§å…¬å› æ•°
 int gcd (int a, int b)
 {
 	return b ? gcd(b, a % b) : a;
 }
 
-// ¿ìËÙÃİ
+// å¿«é€Ÿå¹‚
 int qmi (int a, int b, int p)
 {
     int res = 1;
@@ -41,7 +41,7 @@ int qmi (int a, int b, int p)
     return res;
 }
 
-// Éú³É¹«Ë½Ô¿£¬Âú×ãnÒ»¶¨´óÓÚint('z')£¬¼´È·±£ÄÜ¹»¼Ó½âÃÜËùÓĞµÄ×ÖÄ¸
+// ç”Ÿæˆå…¬ç§é’¥ï¼Œæ»¡è¶³nä¸€å®šå¤§äºint('z')ï¼Œå³ç¡®ä¿èƒ½å¤ŸåŠ è§£å¯†æ‰€æœ‰çš„å­—æ¯
 void Init ()
 {
     srand(static_cast<unsigned>(time(nullptr)));
@@ -59,7 +59,7 @@ void Init ()
 		if (flag) Keys[idx1++] = i;
 	}
 	
-	// Ëæ»úÉú³É¹«Ë½Ô¿ 
+	// éšæœºç”Ÿæˆå…¬ç§é’¥ 
 	int public_key_idx = rand() % idx1, private_key_idx = rand() % idx1;
 	while (public_key_idx == private_key_idx || Keys[public_key_idx] * Keys[private_key_idx] < 122)
 	{
@@ -71,13 +71,13 @@ void Init ()
 	private_Key = Keys[private_key_idx];
 }
 
-// Çó³ö n, fn , e ºÍ d 
+// æ±‚å‡º n, fn , e å’Œ d 
 void Get ()
 {
 	n = public_Key * private_Key;
 	fn = (public_Key - 1) * (private_Key - 1);
 	
-	// Ëæ»úÉú³Ée 
+	// éšæœºç”Ÿæˆe 
 	for (int i = 2; i < fn; i++)
 		if (gcd(fn, i) == 1)
 			Es[idx2++] = i;
@@ -85,7 +85,7 @@ void Get ()
 	int e_idx = rand() % idx2;
 	e = Es[e_idx];
 
-	// È¡³ö×îĞ¡µÄÄæÔª 
+	// å–å‡ºæœ€å°çš„é€†å…ƒ 
     for (int k = 1; ; k++)
         if ((k * e - 1) % fn == 0)
         {

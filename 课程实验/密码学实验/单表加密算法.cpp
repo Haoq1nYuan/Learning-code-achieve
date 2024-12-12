@@ -18,7 +18,7 @@ void InitTurn ()
 
     for (char k = 0; k <= 25; k++)
     {
-        int random_number = rand() % 26;  // 得到0-25之间的数
+        int random_number = rand() % 26;  // 寰楀埌0-25涔嬮棿鐨勬暟
 
         while (st[(k + random_number) % 26]) random_number = rand() % 26;
 
