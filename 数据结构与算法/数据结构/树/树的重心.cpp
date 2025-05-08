@@ -11,8 +11,8 @@ int h[N], e[M], ne[M], idx;
 int ans = N;
 bool st[M];
 
-//ͷ�壬��b����a�У�a��Ϊ��������������ͷ
-//������ʱ��Ӹ��ڵ㿪ʼ�ݹ飬�ݹ鵽��ĩ�ӽڵ���㷵��
+//头插，将b插入a中，a作为根，处在链表开头
+//遍历的时候从根节点开始递归，递归到最末子节点后层层返回
 void add (int a, int b)
 {
     e[idx] = b;
@@ -20,33 +20,33 @@ void add (int a, int b)
     h[a] = idx++;
 }
 
-//�����Ա��uΪ���ڵ�������нڵ�����
+//返回以编号u为根节点的子树中节点数量
 int dfs (int u)
 {
-    //�����������飬��ʾ��ǰ�ڵ��ѱ�������
+    //更新判重数组，表示当前节点已被遍历过
     st[u] = true;
     
     int size = 0, sum = 0;
-    //����u�����������нڵ����
+    //遍历u的所有子树中节点个数
     for ( int i = h[u]; i != -1; i = ne[i] )
     {
         if (st[e[i]]) continue;
         
-        //s����e[i]Ϊ���ڵ�������нڵ���
+        //s是以e[i]为根节点的子树中节点数
         int s = dfs(e[i]);
         size = max(size, s);
         
-        //sum��ʾ��uΪ���ڵ�������г����ڵ�����������ڵ������
+        //sum表示以u为根节点的子树中除根节点以外的其他节点的总数
         sum += s;
     }
     
-    //����forѭ����size��ʾ����u�ڵ�����������нڵ��������ֵ
-    //n - (sum + 1) ��ʾ��u�ڵ�֮�ϵ����нڵ������������ȡ���ֵ
+    //经过for循环，size表示连接u节点的所有子树中节点数的最大值
+    //n - (sum + 1) 表示在u节点之上的所有节点的数量，两者取最大值
     size = max(size, n - sum - 1);
-    //�����ȡ���ֵ�������Сֵ
+    //最后在取最大值的相对最小值
     ans = min(ans, size);
     
-    //���ظ��ڵ�+�����ڵ���
+    //返回根节点+子树节点数
     return sum + 1;
 }
 
@@ -60,10 +60,10 @@ int main ()
     {
         int a, b;
         cin >> a >> b;
-        //��Ϊ������ߣ�������Ҫ��������
+        //因为是无向边，所以需要互相连接
         add(a, b), add(b, a);
     }
-    //�ӱ��1�Ľ�㿪ʼ������Ľڵ��ſ�������
+    //从编号1的结点开始，这里的节点编号可以任意
     dfs(1);
     
     cout << ans;

@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/description/793/
 
-//×Ô¼ºÐ´µÄ
+//è‡ªå·±å†™çš„
 /* #include <iostream>
 using namespace std;
 const int N = 100010;
@@ -41,7 +41,7 @@ int main ()
 }
  */
 
-//vectorÈÝÆ÷
+//vectorå®¹å™¨
 #include <iostream>
 #include <vector>
 using namespace std;

@@ -1,7 +1,7 @@
 //https://www.acwing.com/problem/content/872/
 
-//ÏÈÃ¶¾ÙÃ¿¸öÊýµÄÖÊÒò×Ó·Ö½âÇé¿ö£¬´æµ½¹þÏ£±íÖÐ
-//ÔÚÌ×ÓÃ¹«Ê½Çó¼´¿É
+//å…ˆæžšä¸¾æ¯ä¸ªæ•°çš„è´¨å› å­åˆ†è§£æƒ…å†µï¼Œå­˜åˆ°å“ˆå¸Œè¡¨ä¸­
+//åœ¨å¥—ç”¨å…¬å¼æ±‚å³å¯
 #include <iostream>
 #include <unordered_map>
 
@@ -21,7 +21,7 @@ int main ()
     {
         int x;
         cin >> x;
-        //Çóµ±Ç°Õâ¸öÊýµÄÖÊÒò×Ó·Ö½âÇé¿ö
+        //æ±‚å½“å‰è¿™ä¸ªæ•°çš„è´¨å› å­åˆ†è§£æƒ…å†µ
         for (int i = 2; i <= x / i; i++)
         {
             while (x % i == 0)
@@ -30,7 +30,7 @@ int main ()
                 prime[i]++;
             }
         }
-        //²»ÒªÍüÁË´óÓÚsqrt(n)µÄÖÊÒò×Ó
+        //ä¸è¦å¿˜äº†å¤§äºŽsqrt(n)çš„è´¨å› å­
         if (x > 1) prime[x]++;
     }
     

@@ -39,8 +39,8 @@ void spfa (int *h, int *dist, int type)
         int t = q[hh++];
         st[t] = false;
         
-        //±éÀúËùÓĞÓë t ½Úµã¼äÖ»ÓĞÒ»ÌõÓĞÏò±ßÁ¬Í¨µÄËùÓĞµã k1, k2, k3,¡­
-        //ÇÒ t ½ÚµãÎªÇ°Çı½áµã£¬±ßÎª t -> k
+        //éå†æ‰€æœ‰ä¸ t èŠ‚ç‚¹é—´åªæœ‰ä¸€æ¡æœ‰å‘è¾¹è¿é€šçš„æ‰€æœ‰ç‚¹ k1, k2, k3,â€¦
+        //ä¸” t èŠ‚ç‚¹ä¸ºå‰é©±ç»“ç‚¹ï¼Œè¾¹ä¸º t -> k
         for (int i = h[t]; i != -1; i = ne[i])
         {
             int j = e[i];
@@ -54,7 +54,7 @@ void spfa (int *h, int *dist, int type)
             if (!st[j])
             {
                 q[++tt] = j;
-                //´Ë´¦ĞèÒª¿¼ÂÇµ½Ä£Äâ¶ÓÁĞÈİÁ¿ÏŞÖÆ
+                //æ­¤å¤„éœ€è¦è€ƒè™‘åˆ°æ¨¡æ‹Ÿé˜Ÿåˆ—å®¹é‡é™åˆ¶
                 if (tt == N) tt = 0;
                 st[j] = true;
             }
@@ -81,7 +81,7 @@ int main ()
         if (z == 2) add(hs, y, x), add(he, x, y);
     }
     
-    //ÕÒ×îĞ¡Öµ
+    //æ‰¾æœ€å°å€¼
     memset(mine, 0x3f, sizeof(mine));
     spfa(hs, mine, 1);
     
@@ -89,7 +89,7 @@ int main ()
     memset(q, 0, sizeof(q));
     hh = 0, tt = -1;
     
-    //ÕÒ×î´óÖµ
+    //æ‰¾æœ€å¤§å€¼
     spfa(he, maxe, 2);
     
     int maxs = 0;

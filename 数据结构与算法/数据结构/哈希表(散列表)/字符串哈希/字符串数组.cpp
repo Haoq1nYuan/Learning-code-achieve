@@ -1,20 +1,7 @@
 //https://www.acwing.com/problem/content/843/
 
-#include <algorithm>
 #include <iostream>
-#include <limits.h>
-#include <cstring>
-#include <sstream>
-#include <string>
-#include <cstdio>
-#include <cctype>
-#include <vector>
-#include <bitset>
-#include <ctime>
-#include <queue>
-#include <stack>
-#include <cmath>
-#include <set>
+
 using namespace std;
 
 const int N = 100010, P = 131;
@@ -22,7 +9,7 @@ typedef unsigned long long ull;
 
 int n, m;
 string str;
-//pÊı×é´æ´¢¶ÔÓ¦Ç°×º³¤¶ÈpµÄ´ÎÃİ£¬Ç°×º³¤¶ÈÎª1ÔòPÎª1´ÎÃİ
+//pæ•°ç»„å­˜å‚¨å¯¹åº”å‰ç¼€é•¿åº¦pçš„æ¬¡å¹‚ï¼Œå‰ç¼€é•¿åº¦ä¸º1åˆ™Pä¸º1æ¬¡å¹‚
 ull h[N], p[N];
 int x, y, a, b;
 
@@ -37,7 +24,7 @@ int main ()
     for ( int i = 1; i <= n; i++ )
     {
         p[i] = p[i-1] * P;  
-        h[i] = h[i-1] * P + str[i]; //Ö±½ÓÓÃASCIIÂëÖµ±íÊ¾p½øÖÆÊı
+        h[i] = h[i-1] * P + str[i]; //ç›´æ¥ç”¨ASCIIç å€¼è¡¨ç¤ºpè¿›åˆ¶æ•°
     }
 
     while ( m-- )

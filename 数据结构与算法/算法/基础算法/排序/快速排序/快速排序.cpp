@@ -17,16 +17,16 @@ void quick_sort ( int *q, int l, int r )
         do i ++; while ( q[i] < x );
         do j --; while ( q[j] > x );
         if ( i < j ) swap(q[i], q[j]);
-    }
+    }  // 跳出循环后，i >= j
     
-    quick_sort(q, l, j);
+    quick_sort(q, l, j);   // 以 j 为分界点，保证 [l,j] 内的元素均小于 x
     quick_sort(q, j + 1, r);
 }
 
 int main ()
 {
     scanf( "%d", &n );
-    //q�����1��ʼ�洢
+    //q数组从1开始存储
     for ( int i = 1; i <= n; i++ ) scanf( "%d", q+i );
     
     quick_sort(q, 1, n);

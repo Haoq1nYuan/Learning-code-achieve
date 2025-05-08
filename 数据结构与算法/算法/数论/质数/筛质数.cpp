@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/870/
 
-//ÆÓËØÉ¸·¨
+//æœ´ç´ ç­›æ³•
 #include <iostream>
 
 using namespace std;
@@ -31,7 +31,7 @@ int main ()
     return 0;
 }
 
-//°£ÊÏÉ¸·¨
+//åŸƒæ°ç­›æ³•
 #include <iostream>
 
 using namespace std;
@@ -46,7 +46,7 @@ void get_prime (int n)
         if (!st[i])
         { 
             cnt++;
-            //Ö»ĞèÒªÃ¿´Î°ÑÖÊÊıÉ¸È¥¾ÍĞĞ£¬ÒòÎªºÏÊı¿Ï¶¨ÄÜ±»ÖÊÊıÕû³ıµô
+            //åªéœ€è¦æ¯æ¬¡æŠŠè´¨æ•°ç­›å»å°±è¡Œï¼Œå› ä¸ºåˆæ•°è‚¯å®šèƒ½è¢«è´¨æ•°æ•´é™¤æ‰
             for (int j = i + i; j <= n; j += i) st[j] = true;
         }
 }
@@ -63,7 +63,7 @@ int main ()
     return 0;
 }
 
-//ÏßĞÔÉ¸
+//çº¿æ€§ç­›
 #include <iostream>
 #include <cmath>
 
@@ -75,16 +75,16 @@ bool st[N];
 
 void get_prime (int n)
 {
-    for (int i = 2; i <= n; i++)
+    for (int i = 2; i <= n; i++)-
     {
         if (!st[i]) primes[cnt++] = i;
-	    //È·±£primes[j]ºÍiÏà³Ë²»»á±¬n
+	    //ç¡®ä¿primes[j]å’Œiç›¸ä¹˜ä¸ä¼šçˆ†n
         for (int j = 0; primes[j] <= n / i; j++) 
         {
-	        //¶ÔÓÚstÊı×éÎªÊ²Ã´ÒªÔÚÇ°Ãæ£¬ÆäÊµÕâÀïÊÇ»ùÓÚÉÏÒ»ÂÖ
-	        //µÄÅĞ¶Ï£¬¼´ if (i % primes[j] == 0) break; 
-	        //Õâ¾ä»°±£Ö¤Ö»ÒªÓĞĞÂµÄÑ­»· primes[j] ¾Í»¹ÊÇ 
-	        //primes[j] * i µÄ×îĞ¡ÖÊÒò×Ó
+	        //å¯¹äºstæ•°ç»„ä¸ºä»€ä¹ˆè¦åœ¨å‰é¢ï¼Œå…¶å®è¿™é‡Œæ˜¯åŸºäºä¸Šä¸€è½®
+	        //çš„åˆ¤æ–­ï¼Œå³ if (i % primes[j] == 0) break; 
+	        //è¿™å¥è¯ä¿è¯åªè¦æœ‰æ–°çš„å¾ªç¯ primes[j] å°±è¿˜æ˜¯ 
+	        //primes[j] * i çš„æœ€å°è´¨å› å­
             st[primes[j] * i] = true;
             if (i % primes[j] == 0) break;
         }  

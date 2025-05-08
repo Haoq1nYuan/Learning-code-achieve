@@ -26,7 +26,7 @@ vector<int> Plus ( vector<int> &a, vector<int> &b )
     
     int length = b.size() + a.size() - 1;
     
-    while ( length && t[length] == 0 ) length--;
+    while ( length && t[length] == 0 ) length--;  // 去除前导零，如 131 * 0 = 000
     
     for ( int i = 0; i <= length; i++ ) c.push_back(t[i]);
     

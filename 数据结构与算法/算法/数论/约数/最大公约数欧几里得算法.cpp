@@ -24,7 +24,7 @@ int main ()
     return 0;
 }
 
-//¸üÏà¼õËğ·¨
+//æ›´ç›¸å‡æŸæ³•
 int gcd (int a, int b)
 {
     while (a != b)

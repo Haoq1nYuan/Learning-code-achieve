@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/832/
 
-//±©Á¦½â·¨
+//æš´åŠ›è§£æ³•
 /* #include<stdio.h>
 #define N 100010
 
@@ -30,7 +30,7 @@ int main ( int argc, char *argv[] )
     return 0;
 } */
 
-//µ¥µ÷Õ»ÓÅ»¯
+//å•è°ƒæ ˆä¼˜åŒ–
 #include<stdio.h>
 #define N 100010
 
@@ -44,13 +44,13 @@ int main ( int argc, char *argv[] )
     {
         scanf( "%d", &num );
 
-        //Èç¹ûÕ»¶¥ÔªËØÖµ>=ĞÂ·ÅÈëµÄÖµ£¬Ôòµ¯³ö£¬Ö±µ½ÕÒµ½µÚÒ»¸ö±ÈĞÂÖµĞ¡µÄÕ»ÄÚÖµ
+        //å¦‚æœæ ˆé¡¶å…ƒç´ å€¼>=æ–°æ”¾å…¥çš„å€¼ï¼Œåˆ™å¼¹å‡ºï¼Œç›´åˆ°æ‰¾åˆ°ç¬¬ä¸€ä¸ªæ¯”æ–°å€¼å°çš„æ ˆå†…å€¼
         while ( t && num <= stk[t] ) t--;
 
         if ( t ) printf( "%d ", stk[t] );
         else printf( "-1 ");
 
-        //×îºó·ÅÈëĞÂÖµ
+        //æœ€åæ”¾å…¥æ–°å€¼
         stk[++t] = num;
     }
 

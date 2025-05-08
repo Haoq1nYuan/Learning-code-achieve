@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/156/
 
-//˫ָ�뱩��
+//双指针暴力
 /* #include <iostream>
 #include <cstring>
 #include <cstdio>
@@ -38,21 +38,21 @@ int main ()
     return 0;
 } */
 
-//���������Ż�
+//单调队列优化
 
 /*
-��ν���У���������ӵ��Ƕ�ͷ������ӵ��ڶ�β��
-���Ի������ڵĶ�ͷ���봰���ƶ������෴�ģ������������Ƶ�ʱ���ͷ����࣬��֮ͬ��
+所谓队列，就是先入队的是队头，后入队的在队尾。
+所以滑动窗口的队头是与窗口移动方向相反的，即从左向右移的时候队头在左侧，反之同理
 */
 
-//�����С�ֿ�����
+//最大最小分开遍历
 #include <iostream>
 #include <cstring>
 using namespace std;
 
 const int N = 1000010;
 
-int q[N], h = 0, t = -1;   //�����д洢Ԫ���±����Ԫ��ֵ
+int q[N], h = 0, t = -1;   //队列中存储元素下标而非元素值
 int n, k, a[N];
 
 int main ()
@@ -60,28 +60,28 @@ int main ()
     cin >> n >> k;
     for ( int i = 0; i < n; i++ ) cin >> a[i];
     
-    //i��ʾ���ڵ����Ҷ�
+    //i表示窗口的最右端
     for ( int i = 0; i < n; i++ )
     {
-        //�ж϶�ͷ�Ƿ����봰��
+        //判断队头是否脱离窗口
         if ( h <= t && i - k + 1 > q[h] ) h++;  
 
-        //��β�±��ӦԪ�� < ��Ԫ��ʱ���±��±�����
-        //�������Ա�֤������һ��С���ѣ��ʵ�������״̬�������е���Сֵ�±���Ƕ�ͷ��Ԫ��
+        //队尾下标对应元素 < 新元素时新下标下标入列
+        //这样可以保证队列是一个小根堆，呈单调递增状态，窗口中的最小值下标就是队头的元素
         while ( h <= t && a[q[t]] >= a[i] ) t--;
 
-        //���±�����
+        //新下标入列
         q[++t] = i;
 
-        //����i�Ǵ�0��ʼ����������iҪ > ���ڳ��Ȳ���������
+        //由于i是从0开始遍历，所以i要 > 窗口长度才能输出结果
         if ( i >= k - 1 ) cout << a[q[h]] << ' ';
     }
     cout << endl;
 
-    //memset(q, 0, sizeof(q));  ����ʡ�Գ�ʼ�����������涼�Ḳ��
+    //memset(q, 0, sizeof(q));  可以省略初始化操作，后面都会覆盖
     h = 0, t = -1;
 
-    //ͬ��
+    //同理
     for ( int i = 0; i < n; i++ )
     {
         if ( h <= t && i - k + 1 > q[h] ) h++;

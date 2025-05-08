@@ -5,7 +5,7 @@ using namespace std;
 
 const int N = 100010;
 
-//size����ά��ÿ��������Ԫ�ص�����
+//size数组维护每个集合中元素的数量
 int n, m, p[N], Size[N];
 string h;
 int a, b;
@@ -28,11 +28,11 @@ int main ()
         if ( h[0] == 'C' ) 
         {
             cin >> a >> b;
-            //�˴���һ�����У�����a��b�Ѿ���һ����ͨ���ڣ��ǾͲ���Ҫ֮��Ĳ���
+            //此处加一个特判，可能a和b已经在一个连通块内，那就不需要之后的操作
             if ( Find(a) == Find(b) ) continue;
-            //����b���ڼ��ϵ�size
-            Size[Find(b)] += Size[Find(a)];
-            //����a��b���ڼ���
+            //更新b所在集合的size
+            Size[Find(b)] += Size[Find(a)];  // 需排在链接操作前面
+            //链接a和b所在集合
             p[Find(a)] = Find(b); 
         }
         else if ( h[1] == '1' )

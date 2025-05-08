@@ -1,7 +1,7 @@
 //https://www.acwing.com/problem/content/145/
 
-//��ÿ����ת��Ϊ31λ�������������Ϊ2^32-1 = 0111 1111 1111 1111 1111 1111 1111 1111B
-//Ϊ�˱�֤������������������Ҫ�Ӹ�λ(31λ)��ʼ���������Ķ�����λҪ������ͬ
+//将每个数转换为31位二进制数，最大为2^32-1 = 0111 1111 1111 1111 1111 1111 1111 1111B
+//为了保证两个数异或结果最大，则需要从高位(31位)开始，两个数的二进制位要尽量不同
 #include <iostream>
 using namespace std;
 
@@ -9,8 +9,8 @@ const int N = 3100010;
 
 int n, x[N], ans;
 
-//son�Ķ�ά����ֻ�洢0��1
-//ע�⣬ÿ�������������31λ�����ҴӸ�λ���λ�洢
+//son的二维部分只存储0或1
+//注意，每个数都必须存入31位，并且从高位向低位存储
 int son[N][2], idx;
 
 void insert ( int u )
@@ -33,7 +33,7 @@ int Search ( int u )
         if ( !son[p][!k] ) 
         {
             p = son[p][k];
-            num += k << i;  //���Ʋ������滻2���ݼ�����ʽ
+            num += k << i;  //左移操作，替换2次幂计算形式
         }
         else 
         {
@@ -55,7 +55,7 @@ int main ()
 
     for ( int i = 0; i < n; i++ )
     {
-        //�ҵ��Ӹ�λ����λ01�������ܺ�x[i]��ͬ���Ǹ���
+        //找到从高位到低位01串尽可能和x[i]不同的那个数
         int k = Search(x[i]);
         ans = max( ans, k ^ x[i] );
     }

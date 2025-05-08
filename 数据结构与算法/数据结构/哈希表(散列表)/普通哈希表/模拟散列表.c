@@ -1,12 +1,12 @@
 //https://www.acwing.com/problem/content/842/
 
-//��ϣ���������ڶ������������ʾ��
+//哈希表（类似于多链表的数组表示）
 
-//������
-//��Ӧ˼����2022�����ű�ʡ��C����λ����
+//拉链法
+//相应思考：2022年蓝桥杯省赛C组数位排序
 #include<stdio.h>
 #include<string.h>
-#define N 100003   //ȡģ�����ڷ�Χ�ĵ�һ�����������鳤��������ͬ
+#define N 100003   //取模：大于范围的第一个质数，数组长度与其相同
 
 int h[N], e[N], ne[N], idx;  
 int n, x;
@@ -14,7 +14,7 @@ char c[2];
 
 void insert ( int x )
 {
-    int k = ( x % N + N ) % N;   //��֤����������
+    int k = ( x % N + N ) % N;   //保证余数是正数
     e[idx] = x;     
     ne[idx] = h[k];  
     h[k] = idx;    
@@ -50,13 +50,13 @@ int main ( int argc, char *argv[] )
     return 0;   
 }
 
-//����Ѱַ��
+//开放寻址法
 #include<stdio.h>
 #include<string.h>
-#define N 200003       //���鳤��Ҫ��Ϊ���ݷ�Χ��2~3����Ϊ�����������ģ��������ͬ
-#define null 0x3f3f3f3f   //�涨�����λ��Ϊһ������10^9�����ĸ��ֽ���ͬ�����ֽ����������������null==x�����
+#define N 200003       //数组长度要求为数据范围的2~3倍且为最近的质数，模数与其相同
+#define null 0x3f3f3f3f   //规定数组空位置为一个大于10^9的且四个字节相同的四字节数，这样不会出现null==x的情况
 
-int h[N];  //�洢ȡģ���ֵ
+int h[N];  //存储取模后的值
 int n, x;
 char c[2];
 
@@ -64,15 +64,15 @@ int find ( int x )
 {
     int k = ( x % N + N ) % N;
 
-    //����ѭ����������ʾ���˵��ģ��Ϊk���±괦�Ѿ���ԭ��ֵ��ţ�������������֪�����ֿ�λ��
-    //�� h[k] != null �����ڴ�Ų����ĵ�ַѡȡ
-    //�� h[k] != x �����ڲ��Ҳ����ĵ�ַѡȡ
+    //下面循环条件都表示如果说在模数为k的下标处已经有原数值存放，则向后继续查找知道发现空位置
+    //“ h[k] != null ”用于存放操作的地址选取
+    //“ h[k] != x ”用于查找操作的地址选取
     while ( h[k] != null && h[k] != x )  
     {
-        //����һ��ȡģ��������Ϊk��������ֻ��һ���±���֮��Ӧ����k������ŵ�һ��ȡģΪk��������
-        //������ֳ�ͻ������Ҫ��k+1�����±�k+1��ŵľ��ǵڶ���ȡģΪk����
+        //对于一个取模数（假设为k），数组只有一个下标与之对应（即k，它存放第一个取模为k的数），
+        //如果出现冲突，则需要令k+1，则下标k+1存放的就是第二个取模为k的数
         k++;       
-        if ( k == N ) k = 0;   //�����ڻ�״���飬k�Ĵ洢�ǿ��Կ�Խ��β�Դﵽ�����洢��Ŀ��
+        if ( k == N ) k = 0;   //类似于环状数组，k的存储是可以跨越首尾以达到连续存储的目的
     }
 
     return k;
@@ -82,7 +82,7 @@ int main ( int argc, char *argv[] )
 {
     scanf( "%d", &n );
 
-    memset( h, 0x3f, sizeof(h) );   //���ĩβ����
+    memset( h, 0x3f, sizeof(h) );   //详见末尾解释
 
     while ( n-- ) 
     {
@@ -98,25 +98,25 @@ int main ( int argc, char *argv[] )
     return 0;
 }
 /*
-const int null = 0x3f3f3f3f ��  memset(h, 0x3f, sizeof h)֮��Ĺ�ϵ��
-���ȣ�����Ҫ���memset������������ι�����
-�ȿ���һ�����⣬Ϊʲômemset��ʼ����ѭ�����죿
-�𰸣�memset���죬Ϊʲô����Ϊmemset��ֱ�Ӷ��ڴ���в�����memset�ǰ��ֽڣ�byte�����и��Ƶ�
+const int null = 0x3f3f3f3f 和  memset(h, 0x3f, sizeof h)之间的关系：
+首先，必须要清楚memset函数到底是如何工作的
+先考虑一个问题，为什么memset初始化比循环更快？
+答案：memset更快，为什么？因为memset是直接对内存进行操作。memset是按字节（byte）进行复制的
 
 void * memset(void *_Dst,int _Val,size_t _Size);
-����memset�ĺ�������
-��һ������Ϊһ��ָ�룬��Ҫ���г�ʼ�����׵�ַ
-�ڶ��������ǳ�ʼ��ֵ��ע�⣬������ֱ�Ӱ����ֵ����һ�����鵥Ԫ����int��˵����������
-������������Ҫ��ʼ���׵�ַ����ٸ��ֽ�
-h��int���ͣ���Ϊ4���ֽڣ� �ڶ�������0x3f��λΪһ���ֽڣ�����0x3f * 4(�Ӹߵ��͸���4��) = 0x3f3f3f3f
+这是memset的函数声明
+第一个参数为一个指针，即要进行初始化的首地址
+第二个参数是初始化值，注意，并不是直接把这个值赋给一个数组单元（对int来说不是这样）
+第三个参数是要初始化首地址后多少个字节
+h是int类型，其为4个字节， 第二个参数0x3f八位为一个字节，所以0x3f * 4(从高到低复制4份) = 0x3f3f3f3f
 
-��Ҳ˵����Ϊʲô��memset�в����ó���-1�� 0���ⳣ����ֵ������������Ϊ*4֮��͸ı���ֵ
-0��*4��ֵ����ܺ����⣻-1�Ĳ�����11111111��*4��32λ����1��ת��Ϊԭ�����-1
-�����������������
-����1, �ֽڱ�ʾΪ00000001��memset(h, 1, 4)���ʾΪ0x01010101
+这也说明了为什么在memset中不设置除了-1， 0以外常见的值，这样不会因为*4之后就改变数值
+0它*4后值不变很好理解；-1的补码是11111111，*4后32位都是1，转换为原码后还是-1
+如果不是这两个数：
+比如1, 字节表示为00000001，memset(h, 1, 4)则表示为0x01010101
 
 
-Ϊʲô����Ϊ0x7fffffff��32��1����
-������������ÿ���ֽڶ���ͬ����Σ�������ӷ��Ļ������������ֵ���磬��ɸ�ֵ��
-�ٴΣ���Ȼ���ܴ󣬵�Ҳ��0x3f3f3f3fһ��������
+为什么不设为0x7fffffff（32个1）？
+首先它不满足每个字节都相同，其次，如果做加法的话很容易造成数值上溢，变成负值，
+再次，虽然它很大，但也和0x3f3f3f3f一个量级。
 */

@@ -8,9 +8,9 @@ using namespace std;
 const int N = 100010, M = N * 2;
 
 int n, m;
-//�洢ͼ
+//存储图
 int h[N], e[M], ne[M], idx;
-//d[i]�洢���Ϊ1�Ľڵ㵽i�ľ���
+//d[i]存储编号为1的节点到i的距离
 int d[N];
 
 queue<int> q;
@@ -34,7 +34,7 @@ int bfs ()
         q.pop();
         
         for ( int i = h[t]; i != -1; i = ne[i] )
-            //�˴�ҲҪ��֤ÿ���ڵ�ֻ����һ��
+            //此处也要保证每个节点只遍历一次
             if (d[e[i]] == -1) 
             {
                 d[e[i]] = d[t] + 1;
@@ -49,9 +49,9 @@ int main ()
 {
     cin >> n >> m;
     
-    //��ʼ����������Ϊ-1���ȷ������أ��ַ�������޽�����
+    //初始化距离数组为-1，既方便判重，又方便输出无解的情况
     memset(d, -1, sizeof(d));
-    //�ڽӱ���ͷ�ڵ��ʼֵ����-1
+    //邻接表的头节点初始值都是-1
     memset(h, -1, sizeof(h));
     
     while (m--)

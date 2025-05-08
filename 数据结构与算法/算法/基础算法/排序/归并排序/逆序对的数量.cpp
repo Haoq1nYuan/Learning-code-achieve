@@ -19,7 +19,7 @@ long long merge_sort ( int *q, int l, int r )
         else 
         {
             ans[++k] = q[j++];
-            //多了一个维护操作，维护一个res
+            //澶氫簡涓�涓淮鎶ゆ搷浣滐紝缁存姢涓�涓猺es
             res += mid - i + 1;
         }
     while ( i <= mid ) ans[++k] = q[i++];

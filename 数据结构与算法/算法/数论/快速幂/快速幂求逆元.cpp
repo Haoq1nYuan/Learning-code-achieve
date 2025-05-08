@@ -29,7 +29,7 @@ int main ()
         int a, p;
         scanf("%d%d", &a, &p);
 
-        int t = qmi(a, p - 2, p);
+        int t = qmi(a, p - 2, p);   // 基于费马大定理
         if (!(a % p)) puts("impossible");
         else printf("%d\n", t); 
     }

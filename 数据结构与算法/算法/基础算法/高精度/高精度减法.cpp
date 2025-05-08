@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/794/
 
-//Ö»ÄÜÔÚ a >= b µÄÊ±ºò¼ÆËã£¬Èç¹û a < b£¬ÔòÐèÒªµ÷»»²ÎÊýÎ»ÖÃ
+//åªèƒ½åœ¨ a >= b çš„æ—¶å€™è®¡ç®—ï¼Œå¦‚æžœ a < bï¼Œåˆ™éœ€è¦è°ƒæ¢å‚æ•°ä½ç½®
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -35,7 +35,7 @@ vector<int> Minor ( vector<int> &a, vector<int> &b )
         else c.push_back(10+t), t = -1;
     }
     
-    //Ä¨È¥Ç°µ¼0
+    //æŠ¹åŽ»å‰å¯¼0
     while ( c.size() > 1 && c.back() == 0 ) c.pop_back();
 
     return c;

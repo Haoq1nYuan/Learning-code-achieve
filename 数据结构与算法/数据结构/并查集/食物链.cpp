@@ -1,11 +1,11 @@
 //https://www.acwing.com/problem/content/242/
 
-//��Ȩ���鼯
+//带权并查集
 /*
-������ÿ���ڵ㵽���ڵ�ľ����3��ģ������ʾ�ڵ�֮��Ĺ�ϵ��
-mod 3 = 1:���ԳԸ��ڵ�
-mod 3 = 2:���Ա����ڵ��
-mod 3 = 0:�͸��ڵ�ͬ��
+我们用每个节点到根节点的距离和3的模数来表示节点之间的关系：
+mod 3 = 1:可以吃根节点
+mod 3 = 2:可以被根节点吃
+mod 3 = 0:和根节点同类
 */
 #include <iostream>
 using namespace std;
@@ -16,8 +16,8 @@ typedef unsigned long long ull;
 
 int n, k, t, x, y, ans;
 
-//d����洢�ڵ㵽���ڵ�ľ��룬��������·��ѹ���Ľ��У�
-//���ڵ��ɸ��ڵ㣬����ֵ�Ͼͱ�ʾ�ڵ㵽���ڵ�ľ�����
+//d数组存储节点到父节点的距离，但是随着路径压缩的进行，
+//父节点变成根节点，在数值上就表示节点到根节点的距离了
 int p[N], d[N];
 
 int Find ( int u )
@@ -25,8 +25,8 @@ int Find ( int u )
     if ( p[u] != u )
     {
         int t = Find(p[u]);
-        //�˴���+=��ԭ���ǿ�������֮ǰx���ڼ������ӵ���y���ڼ����У��������ӵĲ���ֻ�õ���d[px];
-        //d[x]��û�б����£���������������ԭ����ֵ��������Ҫ���������+=
+        //此处用+=的原因是可能在这之前x所在集合连接到的y所在集合中，但是连接的操作只得到了d[px];
+        //d[x]并没有被更新，但是它还保留着原来的值，所以需要在这基础上+=
         d[u] += d[p[u]];
         p[u] = t;
     } 
@@ -53,10 +53,10 @@ int main ()
                 else if ( px != py )
                 {
                     p[px] = py;
-                    //��ʱx���ڼ��ϵĸ��ڵ�px����y���ڼ��ϸ��ڵ�py�ľ��뻹��δ֪��
+                    //此时x所在集合的根节点px距离y所在集合根节点py的距离还是未知的
                     // ( d[px] + d[x] ) % 3 = d[y] % 3;
                     d[px] = d[y] - d[x];
-                    //ע�⣬�����������Ϻ�d[x]��û�и��£�����Ҫ����Find�����н���
+                    //注意，连接两个集合后d[x]并没有更新，这需要放在Find函数中进行
                 }
             }
             else
@@ -67,7 +67,7 @@ int main ()
                     p[px] = py;
                     // ( d[px] + d[x] ) % 3 = ( d[y] + 1 ) % 3
                     d[px] = d[y] + 1 - d[x];
-                    //ͬ�ϣ�d[x]δ����
+                    //同上，d[x]未更新
                 }
             }
         }

@@ -13,8 +13,8 @@ void merge_sort ( int *q, int l, int r )
     
     int mid = (l + r) / 2;
     
-    merge_sort(q, mid+1, r);
     merge_sort(q, l, mid);
+    merge_sort(q, mid+1, r);
     
     int k = 0, i = l, j = mid + 1;
     while ( i <= mid && j <= r )
@@ -26,7 +26,7 @@ void merge_sort ( int *q, int l, int r )
     while ( i <= mid ) ans[++k] = q[i++];
     while ( j <= r ) ans[++k] = q[j++];
     
-    //½«Ô­Êý×é¸üÐÂÎªÅÅºÃÐòµÄÐòÁÐ
+    //å°†åŽŸæ•°ç»„æ›´æ–°ä¸ºæŽ’å¥½åºçš„åºåˆ—
     for ( int i = l, j = 1; j <= k; j++, i++ ) q[i] = ans[j]; 
 }
 

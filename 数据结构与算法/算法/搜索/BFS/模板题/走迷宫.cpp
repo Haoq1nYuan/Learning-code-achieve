@@ -9,16 +9,16 @@ using namespace std;
 const int N = 110;
 
 int n, m;
-//a�洢��ͼ��d�洢��ǰλ�õ����(1, 1)�ľ���
+//a存储地图，d存储当前位置到点点(1, 1)的距离
 int a[N][N], d[N][N];
-//ƫ����
+//偏移量
 int dx[] = {-1, 0, 1, 0}, dy[] = {0, 1, 0, -1};
 
 queue<pair<int, int>> k;
 
 int bfs ()
 {
-    //��ʼ������
+    //初始化距离
     memset(d, -1, sizeof(d));
     d[1][1] = 0;
     
@@ -29,12 +29,12 @@ int bfs ()
         auto t = k.front();
         k.pop();
         
-        //��ÿ��λ�ã�������ȫ���п��е���һ��λ�ã�Ҳ����˵��ÿһ������п���λ�ö���һ����õ�
+        //对每个位置，先讨论全所有可行的下一个位置，也就是说，每一层的所有可行位置都是一起算好的
         for ( int i = 0; i < 4; i++ )
         {
             int x = t.first + dx[i], y = t.second + dy[i];
             
-            //����d[x][y]�������ǹؼ�������ֹ���漸��ľ��븲�ǵ�ԭ�Ƚ϶̵ľ��룬��֤�����������̾���
+            //这里d[x][y]的限制是关键，它防止后面几层的距离覆盖掉原先较短的距离，保证我们求的是最短距离
             if (x >= 1 && x <= n && y >= 1 && y <= m && a[x][y] == 0 && d[x][y] == -1)
             {
                 d[x][y] = d[t.first][t.second] + 1;

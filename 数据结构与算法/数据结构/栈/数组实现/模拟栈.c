@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/830/
 
-//Ò»Ä¿ÁËÈ»Ğ´·¨
+//ä¸€ç›®äº†ç„¶å†™æ³•
 /* #include<stdio.h>
 #define N 100010
 
@@ -56,7 +56,7 @@ int main ( int argc, char *argv[] )
     return 0;
 } */
 
-//¼ò½àĞ´·¨
+//ç®€æ´å†™æ³•
 #include<stdio.h>
 #define N 100010
 

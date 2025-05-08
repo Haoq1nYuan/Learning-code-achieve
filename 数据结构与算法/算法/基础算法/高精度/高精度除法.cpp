@@ -13,7 +13,7 @@ vector<int> Divition (vector<int> a, int b, int &r)
 {
     vector<int> c;
 
-    //ÕâÀï²ÉÓÃÖðÎ»¼ÆËãµÄ·½Ê½£¬ÓëÕý³£³ý·¨Ë¼Î¬²»Í¬
+    //è¿™é‡Œé‡‡ç”¨é€ä½è®¡ç®—çš„æ–¹å¼ï¼Œä¸Žæ­£å¸¸é™¤æ³•æ€ç»´ä¸åŒ
     r = 0;
     for ( int i = a.size() - 1; i >= 0; i-- ) 
     {
@@ -24,7 +24,7 @@ vector<int> Divition (vector<int> a, int b, int &r)
 
     reverse(c.begin(), c.end());
 
-    //×¢ÒâÉ¾È¥Ç°µ¼Áã
+    //æ³¨æ„åˆ åŽ»å‰å¯¼é›¶
     for ( int i = c.size() - 1; i > 0; i-- ) 
     {
         if ( c[i] == 0 ) c.pop_back();

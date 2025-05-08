@@ -1,6 +1,6 @@
 //https://www.acwing.com/problem/content/803/
 
-//ÈİÆ÷
+//å®¹å™¨
 #include <iostream>
 #include <bitset>
 using namespace std;
@@ -24,14 +24,12 @@ int main ()
     return 0;    
 }
 
-//Î»ÔËËã
+//ä½è¿ç®—
 #include <iostream>
-#include <bitset>
 using namespace std;
 const int N = 100010;
 
 int n, x[N], ans[N];
-bitset<10000> a;
 
 int main ()
 {
